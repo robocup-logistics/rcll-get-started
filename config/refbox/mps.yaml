@@ -1,0 +1,89 @@
+llsfrb:
+  mps:
+    enable: true
+    stations:
+      C-BS:
+        active: true
+        #host: 192.169.0.100
+        host: simulation
+        port: !tcp-port 4840
+        type: BS
+        connection: plc
+      C-CS1:
+        active: true
+        host: simulation
+        port: !tcp-port 4841
+        type: CS
+        connection: plc
+      C-CS2:
+        active: true
+        host: simulation
+        port: !tcp-port 4842
+        type: CS
+        connection: plc
+      C-RS1:
+        active: true
+        host: simulation
+        port: !tcp-port 4843
+        type: RS
+        connection: plc
+      C-RS2:
+        active: true
+        host: simulation
+        port: !tcp-port 4844
+        type: RS
+        connection: plc
+      C-DS:
+        active: true
+        host: simulation
+        port: !tcp-port 4845
+        type: DS
+        connection: plc
+      C-SS:
+        active: true
+        host: simulation
+        port: !tcp-port 4846
+        type: SS
+        connection: mockup
+      M-BS:
+        active: true
+        host: 192.169.0.100
+        port: !tcp-port 4840
+        type: BS
+        connection: mockup
+      M-CS1:
+        active: true
+        host: 192.169.0.100
+        port: !tcp-port 4841
+        type: CS
+        connection: mockup
+      M-CS2:
+        active: true
+        host: 192.169.0.100
+        port: !tcp-port 4842
+        type: CS
+        connection: mockup
+      M-RS1:
+        active: true
+        host: 192.169.0.100
+        port: !tcp-port 4843
+        type: RS
+        connection: mockup
+      M-RS2:
+        active: true
+        host: 192.169.0.100
+        port: !tcp-port 4844
+        type: RS
+        connection: mockup
+      M-DS:
+        active: true
+        host: 192.169.0.100
+        port: !tcp-port 4845
+        type: DS
+        connection: mockup
+      M-SS:
+        active: true
+        host: 192.169.0.100
+        port: !tcp-port 4846
+        type: SS
+        connection: mockup

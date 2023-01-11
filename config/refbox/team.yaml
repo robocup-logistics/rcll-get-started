@@ -1,0 +1,6 @@
+llsfrb:
+  game:
+    teams: [Carologistics, GRIPS]
+    crypto-keys:
+      Carologistics: randomkey
+      GRIPS: randomkey
