@@ -1,0 +1,170 @@
+version: 2
+# Color of machine gets taken from a prefix of C-xxx or M-xxx
+stations:
+  C-BS:
+    active: true
+    debug: true
+    type: BS
+    port: 4840
+    position: MZ28
+    orientation: 180
+  C-CS1:
+    active: true
+    debug: true
+    port:  4841
+    type: CS
+    position: CZ47
+    orientation: 0
+  C-CS2:
+    active: true
+    debug: true
+    port:  4842
+    type: CS
+    position: CZ76
+    orientation: 90
+  C-RS1:
+    active: true
+    debug: true
+    port:  4843
+    type: RS
+    position: MZ55
+    orientation: 225
+  C-RS2:
+    active: true
+    debug: true
+    port:  4844
+    type: RS
+    position: CZ14
+    orientation: 270
+  C-DS:
+    active: true
+    debug: true
+    port:  4845
+    type: DS
+    position: CZ33
+    orientation: 225
+  C-SS:
+    active: false
+    debug: true
+    port:  4846
+    type: SS
+    position: CZ72
+    orientation: 135
+  M-BS:
+    active: false
+    debug: false
+    port:  4850
+    type: BS
+    position: MZ72
+    orientation: 0
+  M-CS1:
+    active: false
+    debug: false
+    port:  4851
+    type: CS
+    position: MZ73
+    orientation: 0
+  M-CS2:
+    active: false
+    debug: false
+    port:  4852
+    type: CS
+    position: MZ74
+    orientation: 0
+  M-RS1:
+    active: false
+    debug: false
+    port:  4853
+    type: RS
+    position: MZ75
+    orientation: 0
+  M-RS2:
+    active: false
+    debug: false
+    port:  4854
+    type: RS
+    position: MZ76
+    orientation: 0
+  M-DS:
+    active: false
+    debug: false
+    port:  4855
+    type: DS
+    position: MZ77
+    orientation: 0
+  M-SS:
+    active: false
+    debug: false
+    port:  4856
+    type: SS
+    position: MZ78
+    orientation: 0
+robots:
+  Klaus:
+    active: true
+    jersey: 1
+    team: cyan
+  Wolf:
+    active: true
+    jersey: 2
+    team: cyan
+  Uke:
+    active: true
+    jersey: 3
+    team: cyan
+  Heinz:
+    active: false
+    jersey: 1
+    team: magenta
+  Franz:
+    active: false
+    jersey: 2
+    team: magenta
+  Hans:
+    active: false
+    jersey: 3
+    team: magenta
+teams:
+  CYAN:
+    name: GRIPS
+    active: true
+    #host: grips_team_server
+    host: grips_team_server
+    port: 2016
+  MAGENTA:
+    name: Carologistics
+    active: true
+    host: 192.169.0.102
+    port: 2016
+refbox:
+  public:
+    ip: refbox
+    send: 4445
+    recv: 4444
+  cyan:
+    send: 4446
+    recv: 4441
+  magenta:
+    send: 4442
+    recv: 4447
+webui:
+  prefix: http
+  port: 8000
+general:
+  timefactor: 1.0
+  fixed-mps-position: false
+  mockup-connections: false
+  robot-connection-type: tcp  # connection can be UDP and TCP currently. if nothing is given we default to tcp
+  ignore-teamcolor: true
+  robot-prepare-mps: true # robot is responsible to send prepare machine messages, option might be removed in future as teams tend to send prepare via their main control unit
+  robot-direct-beacon: false  # Robot is expected to send his beaconsignals directly to the refbox via udp
+  robot-move-zone-duration: 2 # in seconds
+  robot-grab-product-duration: 10 # duration for a single try of a grab
+  robot-maximum-grab-duration: 40 # duration after which a grab is stopped
+  robot-place-product-duration: 5 # duration for a single place try
+  belt-action-duration: 2.5 # time the belt takes to move a product from one place to another - taken from gazebo
+  bs-dispense-duration: 2.5 # time the base station takes to dispense a base - taken from gazebo
+  cs-buffer-duration: 3.5  # buffer cap - taken from gazebo
+  rs-mount-duration: 3.5  # mounting a ring 3.5 seconds - taken from gazebo
+  ds-deliver-duration: 3.5  # time it takes to deliver - taken from gazebo
+
