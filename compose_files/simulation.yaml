@@ -2,17 +2,20 @@ version: '3.7'
 services:
   simulator:
     image: "${SIMULATOR_IMAGE}:${SIMULATOR_TAG}"
-    container_name: simulation
+    network_mode: "host"
     restart: 'no'
     entrypoint: bash -c "dotnet run --framework net6.0 -cfg cfg/config.yaml"
     volumes:
       - ${SIMULATOR_CONFIG_FILE}:/simulator/cfg/config.yaml
-    ports:
-      - 8000:8000
+ #   ports:
+ #     - 8000:8000
+ #   extra_hosts:
+ #     - "host.docker.internal:host-gateway"
   simulator-frontend:
     image: "${SIMULATOR_FRONTEND_IMAGE}:${SIMULATOR_FRONTEND_TAG}"
+    network_mode: "host"
     depends_on:
       - simulator
-    ports:
-      - 4200:4200
+ #   ports:
+ #     - 4200:4200
 

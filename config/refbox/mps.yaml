@@ -5,43 +5,43 @@ llsfrb:
       C-BS:
         active: true
         #host: 192.169.0.100
-        host: simulation
+        host: localhost
         port: !tcp-port 4840
         type: BS
-        connection: mockup
+        connection: plc
       C-CS1:
         active: true
-        host: 192.168.0.1
+        host: localhost
         port: !tcp-port 4840
         type: CS
         connection: plc
       C-CS2:
         active: true
-        host: simulation
+        host: localhost
         port: !tcp-port 4842
         type: CS
-        connection: mockup
+        connection: plc
       C-RS1:
         active: true
-        host: simulation
+        host: localhost
         port: !tcp-port 4843
         type: RS
-        connection: mockup
+        connection: plc
       C-RS2:
         active: true
-        host: simulation
+        host: localhost
         port: !tcp-port 4844
         type: RS
-        connection: mockup
+        connection: plc
       C-DS:
         active: true
-        host: simulation
+        host: localhost
         port: !tcp-port 4845
         type: DS
-        connection: mockup
+        connection: plc
       C-SS:
         active: true
-        host: simulation
+        host: localhost
         port: !tcp-port 4846
         type: SS
         connection: mockup
