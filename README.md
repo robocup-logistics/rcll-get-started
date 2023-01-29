@@ -29,7 +29,7 @@ Env variables for configuration:
 ##### rc_refbox_shell
 start the refbox_shell (old ui for refbox).
 
-#### rc_start_simulator
+##### rc_start_simulator
 start the rcll-simulator and the frontend for it. The ui can then be accessed via `http://localhost:4200/`. 
 
 Env variables for configuration: 
