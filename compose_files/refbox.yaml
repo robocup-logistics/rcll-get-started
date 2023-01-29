@@ -2,7 +2,6 @@ version: '3.7'
 services:
   refbox:
     image: "${REFBOX_IMAGE}:${REFBOX_TAG}"
-    entrypoint: bash -c "sleep 25 && ./start.sh"
     network_mode: "host"
     depends_on:
       - mongodb
