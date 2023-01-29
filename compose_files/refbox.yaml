@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   refbox:
-    image: "registry.gitlab.com/grips_robocup/team_server/refbox:refactored"
+    image: "${REFBOX_IMAGE}:${REFBOX_TAG}"
     entrypoint: bash -c "sleep 25 && ./start.sh"
     network_mode: "host"
     depends_on:
@@ -15,7 +15,7 @@ services:
       - ./../config/refbox/team.yaml:/etc/rcll-refbox/team/default_team.yaml
 
   frontend:
-    image: "registry.gitlab.com/grips_robocup/logistics/rcll-frontend"
+    image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
     network_mode: "host"
     restart: "always"
     ports:
