@@ -17,8 +17,6 @@ services:
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
     network_mode: "host"
     restart: "always"
-    ports:
-      - 80:80
   mongodb:
     network_mode: "host"
     image: mongo
