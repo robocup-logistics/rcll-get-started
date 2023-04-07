@@ -14,7 +14,9 @@ To use this repository you have to have `docker`, `docker-compose` and `bash` in
 `~/.bashrc`
 
 ### Configuration
-All the commands that are listened below can be configured via various env variables. To overwrite the defaults which are set in the `setup.sh` script, manually overwrite them i.e by sourcing another script overwriting the defaults.
+All the commands that are listened below can be configured via various env variables. To overwrite the defaults which are set in the `setup.sh` script, manually overwrite them in the file `local_setup.sh`. This file is ignored in git and will be created automatically once you source the `setup.sh` for the first time.
+
+If you want to play a c0 productino challenge, one must add `export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_prod_c0.yaml` into his `local_setup.sh`.
 
 ### Commands:
 ##### rc_start_refbox
