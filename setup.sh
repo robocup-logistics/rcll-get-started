@@ -17,7 +17,7 @@ export REFBOX_CONFIG_SIMULATION=./../config/refbox/simulation.yaml
 export REFBOX_CONFIG_COMM=./../config/refbox/comm.yaml
 export REFBOX_CONFIG_MPS=./../config/refbox/mps.yaml
 export REFBOX_CONFIG_TEAM=./../config/refbox/team.yaml
-
+export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_disabled.yaml
 function rc_start_refbox() {
   cd $rcll_get_started_dir/compose_files
   docker-compose -f refbox.yaml up

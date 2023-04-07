@@ -12,6 +12,7 @@ services:
       - ${REFBOX_CONFIG_COMM}:/etc/rcll-refbox/comm/default_comm.yaml
       - ${REFBOX_CONFIG_MPS}:/etc/rcll-refbox/mps/default_mps.yaml
       - ${REFBOX_CONFIG_TEAM}:/etc/rcll-refbox/team/default_team.yaml
+      - ${REFBOX_CONFIG_CHALLENGE}:/etc/rcll-refbox/challenges/default_challenges.yaml
 
   frontend:
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
