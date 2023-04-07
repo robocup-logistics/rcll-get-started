@@ -1,16 +1,14 @@
 # rcll-get-started
 This repository bundles the documentation and setup details around the software used in the RCLL.
 ### General information
-
 Most of the software used in the RCLL can be found in the [github organization](https://github.com/robocup-logistics). 
 The docker images for the RCLL get published to the [quay](https://quay.io/organization/robocup-logistics).
 #### Rules for RCLL
 The rulebook for the RCLL can be found [here](https://github.com/robocup-logistics/rcll-rulebook).
 #### Libraries for RCLL
-There are various libraries to make communication with the refbox easy, at the moment there is one for [Java](https://github.com/robocup-logistics/rcll-java) and one for [C++](https://github.com/fawkesrobotics/protobuf_comm).
+There are various libraries to make communication with the refbox easy, at the moment there is one for [Java](https://github.com/robocup-logistics/rcll-java) and one for [C++](https://github.com/fawkesrobotics/protobuf_comm). Here you can find an [example](https://github.com/lef98/rcll_refbox_comm_example) that is using the C++ lib.
 
-
-### Installation
+### Installation of this Repo
 ##### Prerequisites
 To use this repository you have to have `docker`, `docker-compose` and `bash` installed. To make the commands available you have to source `setup.sh`, you can do this in our local 
 `~/.bashrc`
@@ -45,3 +43,10 @@ Env variables for configuration:
 - `SIMULATOR_FRONTEND_IMAGE` image to use for simulator frontend
 - `SIMULATOR_FRONTEND_TAG` tag to use for simulator frontend
 - `SIMULATOR_CONFIG_FILE` the config file used for the simulator.
+
+### Documentation For RCLL
+
+Generally it is good to take a look at the refbox [wiki](https://github.com/robocup-logistics/rcll-refbox/wiki), which contains a lot of information.
+
+#### Communication
+Each Team has to communicate with the [refbox](https://github.com/robocup-logistics/rcll-refbox). This is done via the [rcll-protobuf-msgs](https://github.com/robocup-logistics/rcll-protobuf-msgs). You can find a detailed documentation on them [here](https://pkohout.github.io/rcll-protobuf-msgs/). In the refbox repository is a wiki entry giving a good overview of the communication, see this [link](https://github.com/robocup-logistics/rcll-refbox/wiki/Communication-Protocol#messages-sent-from-the-refbox)
