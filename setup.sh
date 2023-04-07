@@ -27,3 +27,12 @@ function rc_start_simulator() {
   cd $rcll_get_started_dir/compose_files
   docker-compose -f simulation.yaml up
 }
+
+LOCAL_SETUP=$rcll_get_started_dir/local_setup.sh
+if [ -f "$LOCAL_SETUP" ]; then
+    echo "FOUND local settings[$LOCAL_SETUP], loading it!"
+    source $LOCAL_SETUP
+else
+  echo "local settings [$LOCAL_SETUP] DOES NOT exist, not trying to load them!"
+fi
+
