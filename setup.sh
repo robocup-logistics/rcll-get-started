@@ -29,10 +29,9 @@ function rc_start_simulator() {
 }
 
 LOCAL_SETUP=$rcll_get_started_dir/local_setup.sh
-if [ -f "$LOCAL_SETUP" ]; then
-    echo "FOUND local settings[$LOCAL_SETUP], loading it!"
-    source $LOCAL_SETUP
-else
-  echo "local settings [$LOCAL_SETUP] DOES NOT exist, not trying to load them!"
+if [ ! -f "$LOCAL_SETUP" ]; then
+  echo "local settings [$LOCAL_SETUP] DOES NOT exist, creating empty file!"
+  echo "" > $LOCAL_SETUP
 fi
+source $LOCAL_SETUP
 
