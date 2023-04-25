@@ -13,15 +13,16 @@ services:
       - ${REFBOX_CONFIG_MPS}:/etc/rcll-refbox/mps/default_mps.yaml
       - ${REFBOX_CONFIG_TEAM}:/etc/rcll-refbox/team/default_team.yaml
       - ${REFBOX_CONFIG_CHALLENGE}:/etc/rcll-refbox/challenges/default_challenges.yaml
+      - ${REFBOX_CONFIG_MONGODB}:/etc/rcll-refbox/mongodb/default_mongodb.yaml
 
   frontend:
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
     network_mode: "host"
     restart: "always"
-    ports:
-      - 80:80
   mongodb:
+    container_name: "mongodb"
     network_mode: "host"
     image: mongo
     restart: "always"
-    container_name: "mongodb"
+    volumes:
+      - './data:/data/db'

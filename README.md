@@ -33,7 +33,8 @@ Env variables for configuration:
 - `REFBOX_CONFIG_MPS` mps config to use in the refbox.
 - `REFBOX_CONFIG_TEAM` team config to use in the refbox.
 - `REFBOX_CONFIG_CHALLENGE` challenges config to use in the refbox.
-
+- `REFBOX_CONFIG_MONGODB` mongodb config to use in the refbox.
+  
 In the folder `config/refbox` are some configuraitons which are used by default. You can find more [here](https://github.com/robocup-logistics/rcll-refbox/tree/master/cfg]) in the rcll-refbox repository.
 
 ##### rc_start_simulator
