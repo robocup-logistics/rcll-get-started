@@ -28,6 +28,10 @@ function rc_start_simulator() {
   docker-compose -f simulation.yaml up
 }
 
+function rc() {
+ cd $rcll_get_started_dir
+}
+
 LOCAL_SETUP=$rcll_get_started_dir/local_setup.sh
 if [ ! -f "$LOCAL_SETUP" ]; then
   echo "local settings [$LOCAL_SETUP] DOES NOT exist, creating empty file!"
