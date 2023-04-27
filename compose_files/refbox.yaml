@@ -6,6 +6,7 @@ services:
     depends_on:
       - mongodb
     restart: "always"
+    command: llsf-refbox --dump-cfg
     volumes:
       - ${REFBOX_CONFIG_GAME}:/etc/rcll-refbox/game/default_game.yaml
       - ${REFBOX_CONFIG_SIMULATION}:/etc/rcll-refbox/simulation/default_simulation.yaml

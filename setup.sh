@@ -2,7 +2,7 @@ rcll_get_started_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 &
 
 export REFBOX_TAG=latest
 export REFBOX_FRONTEND_TAG=latest
-export SIMULATOR_TAG=v1
+export SIMULATOR_TAG=v2
 export SIMULATOR_FRONTEND_TAG=v1
 
 
@@ -20,6 +20,19 @@ export REFBOX_CONFIG_TEAM=./../config/refbox/team.yaml
 export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_disabled.yaml
 export REFBOX_CONFIG_MONGODB=./../config/refbox/mongodb.yaml
 function rc_start_refbox() {
+  if [[ ! -z "${RC_CYAN}" ]]; then
+    echo "CYAN will be: $RC_CYAN"
+    #REFBOX_ARGS=$(echo "$REFBOX_ARGS && rcll-refbox-instruct -cyan $RC_CYAN")
+    cmd=$(echo "sleep 5 && docker exec compose_files_refbox_1 rcll-refbox-instruct -c$RC_CYAN")
+    echo "Will run in screen: $cmd"
+    screen -m -d bash -c "$cmd"
+  fi
+  if [[ ! -z "${RC_MAGENTA}" ]]; then
+    echo "MAGENTA will be: $RC_MAGENTA"
+    cmd=$(echo "sleep 5 && docker exec compose_files_refbox_1 rcll-refbox-instruct -m$RC_MAGENTA")
+    echo "Will run in screen: $cmd"
+    screen -m -d bash -c "$cmd"
+  fi
   cd $rcll_get_started_dir/compose_files
   docker-compose -f refbox.yaml up
 }
