@@ -33,6 +33,16 @@ function rc_start_refbox() {
     echo "Will run in screen: $cmd"
     screen -m -d bash -c "$cmd"
   fi
+
+  if [[ "${RC_AUTO_START}"=="true" ]]; then
+    echo "Autostart is activated!"
+    cmd=$(echo "sleep 6 && docker exec compose_files_refbox_1 bash -c 'rcll-refbox-instruct -p SETUP && rcll-refbox-instruct -s RUNNING")
+    echo "Will run in screen: $cmd"
+    screen -m -d bash -c "$cmd"
+  fi
+
+  rcll-refbox-instruct -p PRE_GAME -s RUNNING
+
   cd $rcll_get_started_dir/compose_files
   docker-compose -f refbox.yaml up
 }
