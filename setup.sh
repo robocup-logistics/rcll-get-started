@@ -47,9 +47,19 @@ function rc_start_refbox() {
   docker-compose -f refbox.yaml up
 }
 
+function rc_pull_refbox() {
+  cd $rcll_get_started_dir/compose_files
+  docker-compose -f refbox.yaml pull
+}
+
 function rc_start_simulator() {
   cd $rcll_get_started_dir/compose_files
   docker-compose -f simulation.yaml up
+}
+
+function rc_pull_simulator() {
+  cd $rcll_get_started_dir/compose_files
+  docker-compose -f simulation.yaml pull
 }
 
 function rc_dump_game_reports() {
@@ -84,3 +94,5 @@ if [ ! -d "$DATA_FOLDER" ]; then
 fi
 source $LOCAL_SETUP
 
+
+}
