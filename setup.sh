@@ -47,6 +47,11 @@ function rc_start_refbox() {
   docker-compose -f refbox.yaml up
 }
 
+function rc_stop_refbox() {
+  cd $rcll_get_started_dir/compose_files
+  docker-compose -f refbox.yaml down
+}
+
 function rc_pull_refbox() {
   cd $rcll_get_started_dir/compose_files
   docker-compose -f refbox.yaml pull
