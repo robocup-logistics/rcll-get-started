@@ -5,7 +5,7 @@ services:
     network_mode: "host"
     depends_on:
       - mongodb
-    restart: "always"
+    restart: "no"
     command: llsf-refbox --dump-cfg
     volumes:
       - ${REFBOX_CONFIG_GAME}:/etc/rcll-refbox/game/default_game.yaml
@@ -19,11 +19,11 @@ services:
   frontend:
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
     network_mode: "host"
-    restart: "always"
+    restart: "no"
   mongodb:
     container_name: "mongodb"
     network_mode: "host"
     image: mongo
-    restart: "always"
+    restart: "no"
     volumes:
       - './data:/data/db'
