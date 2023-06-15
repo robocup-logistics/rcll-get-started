@@ -98,6 +98,3 @@ if [ ! -d "$DATA_FOLDER" ]; then
   mkdir -p $DATA_FOLDER
 fi
 source $LOCAL_SETUP
-
-
-}
