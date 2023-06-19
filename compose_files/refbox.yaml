@@ -5,7 +5,7 @@ services:
     network_mode: "host"
     depends_on:
       - mongodb
-    restart: "no"
+    restart: "always"
     command: llsf-refbox --dump-cfg
     volumes:
       - ${REFBOX_CONFIG_GAME}:/etc/rcll-refbox/game/default_game.yaml
