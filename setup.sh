@@ -19,6 +19,16 @@ export REFBOX_CONFIG_MPS=./../config/refbox/mps.yaml
 export REFBOX_CONFIG_TEAM=./../config/refbox/team.yaml
 export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_disabled.yaml
 export REFBOX_CONFIG_MONGODB=./../config/refbox/mongodb.yaml
+
+export MQTT_BRIDGE_IMAGE=ghcr.io/robocup-logistics/rcll-mqtt-bridge
+export MQTT_BRIDGE_TAG=master
+
+export RC_MQTT_START=false
+export RC_MQTT_BROKER=tcp://localhost:1883
+export RC_MQTT_REFBOX=localhost
+export RC_MQTT_TEAM=GRIPS
+export RC_MQTT_KEY=randomkey
+
 function rc_start_refbox() {
   if [[ ! -z "${RC_CYAN}" ]]; then
     echo "CYAN will be: $RC_CYAN"
@@ -41,15 +51,21 @@ function rc_start_refbox() {
     screen -m -d bash -c "$cmd"
   fi
 
+
   rcll-refbox-instruct -p PRE_GAME -s RUNNING
 
   cd $rcll_get_started_dir/compose_files
+  if [[ "${RC_MQTT_START}"=="true" ]]; then
+    echo "Starting MQTT bridge!"
+    docker-compose -f mqtt-bridge.yaml up -d
+  fi
   docker-compose -f refbox.yaml up
 }
 
 function rc_stop_refbox() {
   cd $rcll_get_started_dir/compose_files
   docker-compose -f refbox.yaml down
+  docker-compose -f mqtt-bridge.yaml down
 }
 
 function rc_pull_refbox() {
