@@ -37,6 +37,8 @@ Env variables for configuration:
   
 #### mqtt_bdrige
 
+Note: The image is only available via ghcr.io, so you have to login in order to be able to pull it!
+
 Env variables for configuration:
 - `RC_MQTT_START` set to true if mqtt bridge should start
 - `RC_MQTT_BROKER` broker to connec to
