@@ -7,5 +7,5 @@ services:
     environment:
       - BROKER=$RC_MQTT_BROKER
       - REFBOX=$RC_MQTT_REFBOX
-      - TEAM=$GRIPS
+      - TEAM=$RC_MQTT_TEAM
       - KEY=$RC_MQTT_KEY

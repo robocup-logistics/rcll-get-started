@@ -35,6 +35,16 @@ Env variables for configuration:
 - `REFBOX_CONFIG_CHALLENGE` challenges config to use in the refbox.
 - `REFBOX_CONFIG_MONGODB` mongodb config to use in the refbox.
   
+#### mqtt_bdrige
+
+Env variables for configuration:
+- `RC_MQTT_START` set to true if mqtt bridge should start
+- `RC_MQTT_BROKER` broker to connec to
+- `RC_MQTT_REFBOX` ip of the refbox
+- `RC_MQTT_TEAM` team name
+- `RC_MQTT_KEY` crypto key for refbox communication
+
+
 In the folder `config/refbox` are some configuraitons which are used by default. You can find more [here](https://github.com/robocup-logistics/rcll-refbox/tree/master/cfg]) in the rcll-refbox repository.
 
 ##### rc_start_simulator
