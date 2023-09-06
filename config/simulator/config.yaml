@@ -126,15 +126,15 @@ robots:
     team: magenta
 teams:
   CYAN:
-    name: GRIPS
+    name: Carologistics
     active: true
     #host: grips_team_server
     host: localhost
     port: 2016
   MAGENTA:
-    name: Carologistics
+    name: GRIPS
     active: true
-    host: 192.169.0.102
+    host: localhost
     port: 2016
 refbox:
   public:

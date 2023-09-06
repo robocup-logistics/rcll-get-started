@@ -57,7 +57,7 @@ function rc_start_refbox() {
   cd $rcll_get_started_dir/compose_files
   if [[ "${RC_MQTT_START}"=="true" ]]; then
     echo "Starting MQTT bridge!"
-    docker-compose -f mqtt-bridge.yaml up -d
+    #docker-compose -f mqtt-bridge.yaml up -d
   fi
   docker-compose -f refbox.yaml up
 }
