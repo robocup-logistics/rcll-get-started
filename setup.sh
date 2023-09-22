@@ -44,7 +44,7 @@ function rc_start_refbox() {
     screen -m -d bash -c "$cmd"
   fi
 
-  if [[ "${RC_AUTO_START}"=="true" ]]; then
+  if [ "${RC_AUTO_START}" == "true" ]; then
     echo "Autostart is activated!"
     cmd=$(echo "sleep 6 && docker exec refbox rcll-refbox-instruct -p SETUP && docker exec refbox rcll-refbox-instruct -s RUNNING")
     echo "Will run in screen: $cmd"
@@ -56,7 +56,7 @@ function rc_start_refbox() {
 
   cd $rcll_get_started_dir/compose_files
   echo "HERE: ${RC_MQTT_START}"
-  if [[ "${RC_MQTT_START}"=="true" ]]; then
+  if [ "${RC_MQTT_START}" == "true" ]; then
     echo "Starting MQTT bridge!"
     docker-compose -f mqtt-bridge.yaml up -d
   fi
