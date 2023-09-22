@@ -33,20 +33,20 @@ function rc_start_refbox() {
   if [[ ! -z "${RC_CYAN}" ]]; then
     echo "CYAN will be: $RC_CYAN"
     #REFBOX_ARGS=$(echo "$REFBOX_ARGS && rcll-refbox-instruct -cyan $RC_CYAN")
-    cmd=$(echo "sleep 5 && docker exec compose_files_refbox_1 rcll-refbox-instruct -c$RC_CYAN")
+    cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -c$RC_CYAN")
     echo "Will run in screen: $cmd"
     screen -m -d bash -c "$cmd"
   fi
   if [[ ! -z "${RC_MAGENTA}" ]]; then
     echo "MAGENTA will be: $RC_MAGENTA"
-    cmd=$(echo "sleep 5 && docker exec compose_files_refbox_1 rcll-refbox-instruct -m$RC_MAGENTA")
+    cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -m$RC_MAGENTA")
     echo "Will run in screen: $cmd"
     screen -m -d bash -c "$cmd"
   fi
 
   if [[ "${RC_AUTO_START}"=="true" ]]; then
     echo "Autostart is activated!"
-    cmd=$(echo "sleep 6 && docker exec compose_files_refbox_1 bash -c 'rcll-refbox-instruct -p SETUP && rcll-refbox-instruct -s RUNNING")
+    cmd=$(echo "sleep 6 && docker exec refbox rcll-refbox-instruct -p SETUP && docker exec refbox rcll-refbox-instruct -s RUNNING")
     echo "Will run in screen: $cmd"
     screen -m -d bash -c "$cmd"
   fi
@@ -55,6 +55,7 @@ function rc_start_refbox() {
   rcll-refbox-instruct -p PRE_GAME -s RUNNING
 
   cd $rcll_get_started_dir/compose_files
+  echo "HERE: ${RC_MQTT_START}"
   if [[ "${RC_MQTT_START}"=="true" ]]; then
     echo "Starting MQTT bridge!"
     docker-compose -f mqtt-bridge.yaml up -d
