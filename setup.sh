@@ -79,9 +79,20 @@ function rc_start_simulator() {
   docker-compose -f simulation.yaml up
 }
 
+function rc_pull_mqtt() {
+  cd $rcll_get_started_dir/compose_files
+  docker-compose -f mqtt-bridge.yaml pull
+}
+
 function rc_pull_simulator() {
   cd $rcll_get_started_dir/compose_files
   docker-compose -f simulation.yaml pull
+}
+
+function rc_pull() {
+    rc_pull_mqtt
+    rc_pull_refbox
+    rc_pull_simulator
 }
 
 function rc_dump_game_reports() {
