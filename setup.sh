@@ -29,6 +29,8 @@ export RC_MQTT_REFBOX=localhost
 export RC_MQTT_TEAM=GRIPS
 export RC_MQTT_KEY=randomkey
 
+export MQTT_BROKER_CONFIG=./../config/mosquitto
+
 function rc_start_refbox() {
   if [[ ! -z "${RC_CYAN}" ]]; then
     echo "CYAN will be: $RC_CYAN"
