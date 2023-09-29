@@ -51,6 +51,8 @@ export RC_MQTT_REFBOX=localhost
 export RC_MQTT_TEAM=GRIPS
 export RC_MQTT_KEY=randomkey
 
+export MQTT_BROKER_CONFIG=./../config/mosquitto
+
 function rc_setup_screen() {
   if ! screen -list | grep -q "${RC_SCREEN_NAME}"; then
     # Create a new screen session
@@ -60,6 +62,7 @@ function rc_setup_screen() {
     screen -S ${RC_SCREEN_NAME} -X hardstatus string "%{= ky}%-Lw%{=r}%20>%n %t%{= ky}%+Lw %{= ky}%-=| %{= kw}%M%d %c%{-} %{=r} ${USER}@%H "
     screen -S ${RC_SCREEN_NAME} -X vbell off
     screen -S ${RC_SCREEN_NAME} -X defscrollback 5000
+
   fi
 }
 
