@@ -1,0 +1,56 @@
+version: '3.7'
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    restart: 'unless-stopped'
+    ports: 
+      - 1883:1883
+      - 1884:1884
+    # network_mode: host
+    volumes:
+      - /home/dominik/rcll/mosquitto/conf:/mosquitto/config
+      - /home/dominik/rcll/mosquitto/data:/mosquitto/data
+      - /home/dominik/rcll/mosquitto/log:/mosquitto/log
+  simulation:
+    image: "testsim"
+    #image: "registry.gitlab.com/grips_robocup/team_server/simulator:v2"
+    container_name: simulation
+    restart: 'no'
+    entrypoint: bash -c "sleep 8 && dotnet run --framework net6.0 -cfg cfg/config.yaml"
+    volumes:
+      - ../../simulator.yaml:/simulator/cfg/config.yaml
+    ports:
+      - 8000:8000
+  simulation_webgui:
+    image: "registry.gitlab.com/grips_robocup/team_server/simulator_gui:v2"
+    depends_on:
+      - simulation
+    ports:
+      - 4200:4200
+  refbox:
+    #image: "quay.io/robocup-logistics/rcll-refbox"
+    #image: "registry.gitlab.com/grips_robocup/team_server/refbox:refactored"
+    image: testbox
+    container_name: refbox
+    restart: 'unless-stopped'
+    environment:
+      - TEAM=GRIPS
+      - TEAMCOLOR=c
+    entrypoint: bash -c "sleep 4 &&llsf-refbox & sleep 20; rcll-refbox-instruct -$${TEAMCOLOR} $${TEAM} ; sleep infinity"
+    ports:
+      - 1234:1234
+      - 4444:4444
+    depends_on:
+      - simulation
+    volumes:
+      - ../../refbox_configs/game.yaml:/etc/rcll-refbox/game/default_game.yaml
+      - ../../refbox_configs/simulation.yaml:/etc/rcll-refbox/simulation/default_simulation.yaml
+      - ../../refbox_configs/comm.yaml:/etc/rcll-refbox/comm/default_comm.yaml
+      - ../../refbox_configs/mqtt_mps.yaml:/etc/rcll-refbox/mps/default_mps.yaml
+      - ../../refbox_configs/team.yaml:/etc/rcll-refbox/team/default_team.yaml
+  refbox_frontend:
+    image: quay.io/robocup-logistics/rcll-refbox-frontend
+    container_name: refbox_frontend
+    ports:
+    - 4173:80
+
