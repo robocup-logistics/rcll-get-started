@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  mqtt:
+    image: "${MQTT_BRIDGE_IMAGE}:${MQTT_BRIDGE_TAG}"
+    network_mode: "host"
+    restart: "on-failure"
+    environment:
+      - BROKER=$RC_MQTT_BROKER
+      - REFBOX=$RC_MQTT_REFBOX
+      - TEAM=$RC_MQTT_TEAM
+      - KEY=$RC_MQTT_KEY
