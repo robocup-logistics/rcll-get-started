@@ -1,0 +1,9 @@
+version: "3"
+services:
+  broker:
+    image: eclipse-mosquitto
+    network_mode: host
+    volumes:
+      - ${MQTT_BROKER_CONFIG}/conf:/mosquitto/config
+      - ${MQTT_BROKER_CONFIG}/data:/mosquitto/data
+      - ${MQTT_BROKER_CONFIG}/log:/mosquitto/log
