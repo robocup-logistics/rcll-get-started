@@ -29,6 +29,18 @@ export RC_MQTT_REFBOX=localhost
 export RC_MQTT_TEAM=GRIPS
 export RC_MQTT_KEY=randomkey
 
+function rc_start_mqtt_bridge() {
+  cd $rcll_get_started_dir/compose_files
+  echo "Starting MQTT bridge!"
+  docker-compose -f mqtt-bridge.yaml up -d
+}
+
+function rc_stop_mqtt_bridge() {
+  cd $rcll_get_started_dir/compose_files
+  echo "Starting MQTT bridge!"
+  docker-compose -f mqtt-bridge.yaml down
+}
+
 function rc_start_refbox() {
   if [[ ! -z "${RC_CYAN}" ]]; then
     echo "CYAN will be: $RC_CYAN"
@@ -51,14 +63,13 @@ function rc_start_refbox() {
     screen -m -d bash -c "$cmd"
   fi
 
-
   rcll-refbox-instruct -p PRE_GAME -s RUNNING
 
   cd $rcll_get_started_dir/compose_files
   echo "HERE: ${RC_MQTT_START}"
   if [ "${RC_MQTT_START}" == "true" ]; then
     echo "Starting MQTT bridge!"
-    docker-compose -f mqtt-bridge.yaml up -d
+    rc_start_mqtt_bridge
   fi
   docker-compose -f refbox.yaml up
 }
