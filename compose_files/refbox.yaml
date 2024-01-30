@@ -9,13 +9,13 @@ services:
     restart: "on-failure"
     command: llsf-refbox --dump-cfg
     volumes:
-      - ${REFBOX_CONFIG_GAME}:/etc/rcll-refbox/game/default_game.yaml
-      - ${REFBOX_CONFIG_SIMULATION}:/etc/rcll-refbox/simulation/default_simulation.yaml
-      - ${REFBOX_CONFIG_COMM}:/etc/rcll-refbox/comm/default_comm.yaml
-      - ${REFBOX_CONFIG_MPS}:/etc/rcll-refbox/mps/default_mps.yaml
-      - ${REFBOX_CONFIG_TEAM}:/etc/rcll-refbox/team/default_team.yaml
-      - ${REFBOX_CONFIG_CHALLENGE}:/etc/rcll-refbox/challenges/default_challenges.yaml
-      - ${REFBOX_CONFIG_MONGODB}:/etc/rcll-refbox/mongodb/default_mongodb.yaml
+      - ${REFBOX_CONFIG_GAME}:/etc/rcll-refbox/game/default_game.yaml:z
+      - ${REFBOX_CONFIG_SIMULATION}:/etc/rcll-refbox/simulation/defaultA_simulation.yaml:z
+      - ${REFBOX_CONFIG_COMM}:/etc/rcll-refbox/comm/default_comm.yaml:z
+      - ${REFBOX_CONFIG_MPS}:/etc/rcll-refbox/mps/default_mps.yaml:z
+      - ${REFBOX_CONFIG_TEAM}:/etc/rcll-refbox/team/default_team.yaml:z
+      - ${REFBOX_CONFIG_CHALLENGE}:/etc/rcll-refbox/challenges/default_challenges.yaml:z
+      - ${REFBOX_CONFIG_MONGODB}:/etc/rcll-refbox/mongodb/default_mongodb.yaml:z
 
   frontend:
     container_name: refbox-frontend
@@ -28,4 +28,4 @@ services:
     image: mongo
     restart: "no"
     volumes:
-      - './data:/data/db'
+      - './data:/data/db:z'
