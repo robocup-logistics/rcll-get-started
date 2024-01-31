@@ -46,6 +46,10 @@ Main environment variables for configuration:
 
 In the directory `config/refbox` are some configurations which are used by default. You can find more [here](https://github.com/robocup-logistics/rcll-refbox/tree/master/cfg]) in the rcll-refbox repository.
 
+The startup utilizes docker-compose to spin up services and then sets up a screen session where the logs can be followed.
+The screen session is named `${RC_SCREEN_NAME}`, which defaults to `rcll`.
+The existing tabs in that session are always closed before re-launching.
+
 ##### rc_stop
 This stops all services.
 
