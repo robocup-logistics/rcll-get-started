@@ -2,7 +2,7 @@ version: '3.7'
 services:
   mongodb-check:
     image: ${MONGODB_IMAGE}:${MONGODB_TAG}
-    command: ["sh", "-c", "mongo --host ${RC_MONGODB_BACKEND_URL} --eval 'printjson(db.serverStatus())' || (sleep 1; exit -1)"]
+    command: ["sh", "-c", "mongo --host ${RC_MONGODB_URL} --eval 'printjson(db.serverStatus())' || (sleep 1; exit -1)"]
     network_mode: "host"
     restart: on-failure:10
 

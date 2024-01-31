@@ -8,5 +8,5 @@ services:
     # ports:
     #   - "8085:8085"
     environment:
-      - DB_URL=${RC_MONGODB_BACKEND_URL}
+      - DB_URL=${RC_MONGODB_URI}
       - DB_NAME=${RC_MONGODB_BACKEND_DB_NAME}
