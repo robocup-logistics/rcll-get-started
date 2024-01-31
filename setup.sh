@@ -105,7 +105,7 @@ for func_name in "${function_names[@]}"; do
       echo 'Starting ${func_name}'
       docker-compose -f ${rcll_compose_files_dir}/${func_name}.yaml up -d
       exit_code=$?
-      if [ $exit_code -ne 0 ]; then
+      if [ ${exit_code} -ne 0 ]; then
           #docker-compose -f ${rcll_compose_files_dir}/${func_name}.yaml logs
           echo "${func_name} startup failed with exit code: $exit_code"
           return -1
