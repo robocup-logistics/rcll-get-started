@@ -12,8 +12,8 @@ export MONGODB_BACKEND_TAG=latest
 export MONGODB_TAG=5.0
 export MQTT_BRIDGE_TAG=master
 export MQTT_BROKER_TAG=latest
-export SIMULATOR_TAG=v2
-export SIMULATOR_FRONTEND_TAG=v1
+export SIMULATOR_TAG=latest
+export SIMULATOR_FRONTEND_TAG=latest
 
 
 export REFBOX_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-refbox-frontend
