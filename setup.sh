@@ -6,20 +6,22 @@ if [ -z "$rcll_compose_files_dir" ]; then
     rcll_compose_files_dir="${rcll_get_started_dir}/compose_files"
 fi
 
-export REFBOX_TAG=latest
 export REFBOX_FRONTEND_TAG=latest
+export REFBOX_TAG=latest
+export MONGODB_BACKEND_TAG=latest
+export MONGODB_TAG=5.0
+export MQTT_BRIDGE_TAG=master
 export SIMULATOR_TAG=v2
 export SIMULATOR_FRONTEND_TAG=v1
 
 
-export REFBOX_IMAGE=quay.io/robocup-logistics/rcll-refbox
 export REFBOX_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-refbox-frontend
-export SIMULATOR_IMAGE=quay.io/robocup-logistics/rcll-simulator
-export SIMULATOR_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-simulator-frontend
-export MONGODB_IMAGE=docker.io/library/mongo
-export MONGODB_TAG=5.0
+export REFBOX_IMAGE=quay.io/robocup-logistics/rcll-refbox
 export MONGODB_BACKEND_IMAGE=quay.io/robocup-logistics/mongodb-backend
-export MONGODB_BACKEND_TAG=latest
+export MONGODB_IMAGE=docker.io/library/mongo
+export MQTT_BRIDGE_IMAGE=ghcr.io/robocup-logistics/rcll-mqtt-bridge
+export SIMULATOR_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-simulator-frontend
+export SIMULATOR_IMAGE=quay.io/robocup-logistics/rcll-simulator
 
 export SIMULATOR_CONFIG_FILE=./../config/simulator/config.yaml
 export REFBOX_CONFIG_GAME=./../config/refbox/game.yaml
@@ -30,23 +32,20 @@ export REFBOX_CONFIG_TEAM=./../config/refbox/team.yaml
 export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_disabled.yaml
 export REFBOX_CONFIG_MONGODB=./../config/refbox/mongodb.yaml
 
-export RC_SCREEN_NAME=rcll
-
-export MQTT_BRIDGE_IMAGE=ghcr.io/robocup-logistics/rcll-mqtt-bridge
-export MQTT_BRIDGE_TAG=master
-
-export RC_MONGODB_BACKEND_START=false
 
 export RC_AUTO_SETUP=true
 export RC_AUTO_START=false
-
 export RC_MONGODB_START=true
+export RC_MQTT_START=false
+export RC_MONGODB_BACKEND_START=false
+
+export RC_SCREEN_NAME=rcll
+
 export RC_MONGODB_PORT=27017
 export RC_MONGODB_BACKEND_HOST=localhost
 export RC_MONGODB_BACKEND_URL=mongodb://${RC_MONGODB_BACKEND_HOST}:${RC_MONGODB_PORT}
 export RC_MONGODB_BACKEND_DB_NAME=rcll
 
-export RC_MQTT_START=false
 export RC_MQTT_BROKER=tcp://localhost:1883
 export RC_MQTT_REFBOX=localhost
 export RC_MQTT_TEAM=GRIPS
