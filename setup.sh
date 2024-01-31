@@ -172,6 +172,10 @@ function rc_dump_game_reports() {
 }
 
 function rc_restore_game_reports() {
+  if [ -z "$1" ]; then
+    echo "Please specify the archive to restore to the mongodb instance."
+    return
+  fi
   date=$(date +"%Y-%m-%d_%T")
   cp $1 $rcll_get_started_dir/compose_files/data/TMP_$date.gz
   command=$(echo mongorestore --gzip --archive=/data/db/TMP_$date.gz)
