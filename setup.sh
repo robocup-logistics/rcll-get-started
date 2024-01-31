@@ -41,6 +41,7 @@ export RC_MONGODB_START=true
 export RC_MQTT_START=false
 export RC_MONGODB_BACKEND_START=false
 export RC_MQTT_BROKER_START=false
+export RC_SIMULATOR_START=false
 
 export RC_SCREEN_NAME=rcll
 
@@ -95,7 +96,7 @@ function rc_add_to_screen() {
 
 
 # Define a list of function names
-function_names=("refbox" "mongodb_backend" "mqtt_bridge" "mongodb" "mqtt_broker")
+function_names=("refbox" "mongodb_backend" "mqtt_bridge" "mongodb" "simulator" "mqtt_broker")
 
 # Loop through the list and define functions
 for func_name in "${function_names[@]}"; do
@@ -163,6 +164,9 @@ function rc_start() {
       echo "Will run in screen: $cmd"
       screen -m -d bash -c "$cmd"
     fi
+  fi
+  if [ "${RC_SIMULATOR_START}" = "true" ]; then
+    rc_start_simulator
   fi
 
   if [ "${RC_MQTT_START}" = "true" ]; then
