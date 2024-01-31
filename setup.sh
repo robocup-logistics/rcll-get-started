@@ -16,6 +16,8 @@ export REFBOX_IMAGE=quay.io/robocup-logistics/rcll-refbox
 export REFBOX_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-refbox-frontend
 export SIMULATOR_IMAGE=quay.io/robocup-logistics/rcll-simulator
 export SIMULATOR_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-simulator-frontend
+export MONGODB_IMAGE=docker.io/library/mongo
+export MONGODB_TAG=5.0
 
 export SIMULATOR_CONFIG_FILE=./../config/simulator/config.yaml
 export REFBOX_CONFIG_GAME=./../config/refbox/game.yaml
@@ -31,8 +33,10 @@ export RC_SCREEN_NAME=rcll
 export MQTT_BRIDGE_IMAGE=ghcr.io/robocup-logistics/rcll-mqtt-bridge
 export MQTT_BRIDGE_TAG=master
 
-export RC_AUTO_SETUP=false
+export RC_AUTO_SETUP=true
 export RC_AUTO_START=false
+export RC_MONGODB_START=true
+export RC_MONGODB_PORT=27017
 
 export RC_MQTT_START=false
 export RC_MQTT_BROKER=tcp://localhost:1883
@@ -78,7 +82,7 @@ function rc_add_to_screen() {
 
 
 # Define a list of function names
-function_names=("refbox" "mqtt_bridge")
+function_names=("refbox" "mqtt_bridge" "mongodb")
 
 # Loop through the list and define functions
 for func_name in "${function_names[@]}"; do
@@ -117,6 +121,10 @@ function rc_pull() {
   done
 }
 function rc_start() {
+  if [ "${RC_MONGODB_START}" = "true" ]; then
+    rc_start_mongodb
+  fi
+  echo "Check Mongodb Connectivity on ${RC_MONGODB_BACKEND_URL} and start Refbox"
   rc_start_refbox
   if [ "${RC_AUTO_SETUP}" = "true" ]; then
     if [[ ! -z "${RC_CYAN}" ]]; then

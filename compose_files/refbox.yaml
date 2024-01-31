@@ -1,11 +1,18 @@
 version: '3.7'
 services:
+  mongodb-check:
+    image: ${MONGODB_IMAGE}:${MONGODB_TAG}
+    command: ["sh", "-c", "mongo --host ${RC_MONGODB_BACKEND_URL} --eval 'printjson(db.serverStatus())' || (sleep 1; exit -1)"]
+    network_mode: "host"
+    restart: on-failure:10
+
   refbox:
     container_name: refbox
     image: "${REFBOX_IMAGE}:${REFBOX_TAG}"
     network_mode: "host"
     depends_on:
-      - mongodb
+      mongodb-check:
+        condition: service_completed_successfully
     restart: "on-failure"
     command: llsf-refbox --dump-cfg
     volumes:
@@ -22,10 +29,3 @@ services:
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
     network_mode: "host"
     restart: "no"
-  mongodb:
-    container_name: "mongodb"
-    network_mode: "host"
-    image: mongo
-    restart: "no"
-    volumes:
-      - './data:/data/db:z'
