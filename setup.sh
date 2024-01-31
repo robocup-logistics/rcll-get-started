@@ -42,8 +42,8 @@ export RC_MONGODB_BACKEND_START=false
 export RC_SCREEN_NAME=rcll
 
 export RC_MONGODB_PORT=27017
-export RC_MONGODB_BACKEND_HOST=localhost
-export RC_MONGODB_BACKEND_URL=mongodb://${RC_MONGODB_BACKEND_HOST}:${RC_MONGODB_PORT}
+export RC_MONGODB_HOST=localhost
+export RC_MONGODB_URI=mongodb://${RC_MONGODB_HOST}:${RC_MONGODB_PORT}
 export RC_MONGODB_BACKEND_DB_NAME=rcll
 
 export RC_MQTT_BROKER=tcp://localhost:1883
@@ -131,7 +131,7 @@ function rc_start() {
   if [ "${RC_MONGODB_START}" = "true" ]; then
     rc_start_mongodb
   fi
-  echo "Check Mongodb Connectivity on ${RC_MONGODB_BACKEND_URL} and start Refbox"
+  echo "Check Mongodb Connectivity on ${RC_MONGODB_URI} and start Refbox"
   rc_start_refbox
   if [ "${RC_AUTO_SETUP}" = "true" ]; then
     if [[ ! -z "${RC_CYAN}" ]]; then
