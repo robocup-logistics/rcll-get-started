@@ -6,7 +6,7 @@ The docker images for the RCLL get published to the [quay](https://quay.io/organ
 #### Rules for RCLL
 The rulebook for the RCLL can be found [here](https://github.com/robocup-logistics/rcll-rulebook).
 #### Libraries for RCLL
-There are various libraries to make communication with the refbox easy, at the moment there is one for [Java](https://github.com/robocup-logistics/rcll-java) and one for [C++](https://github.com/fawkesrobotics/protobuf_comm). Here you can find an [example](https://github.com/lef98/rcll_refbox_comm_example) that is using the C++ lib.
+There are various libraries to make communication with the refbox easy, at the moment there is one for [Java](https://github.com/robocup-logistics/rcll-java) and one for [C++](https://github.com/fawkesrobotics/protobuf_comm). Here you can find an [example](https://github.com/lef98/rcll_refbox_comm_example) that is using the C++ lib. For Communication with the refbox there is a mqtt bridge available which can be found [here](https://github.com/robocup-logistics/rcll-mqtt-bridge).
 
 ### Installation of this Repo
 ##### Prerequisites
