@@ -1,13 +1,12 @@
 %YAML 1.2
 ---
 ---
-# Grasping challenge, which from the refbox side consists simply of a static
-# field
+# Production of a C0.
 
 llsfrb:
   challenges:
     enable: true
-    name: ""
+    name: "Production_C0"
     # max is 7 x 8
     field:
       width: 5
@@ -21,6 +20,11 @@ llsfrb:
     orders:
       # if disabled, use default orders from rcll
       customize: true
+      # each order is named O<INTEGER>
+      O1:
+        base-color: BASE_RED
+        ring-colors: []
+        cap-color: CAP_GREY
     publish-routes:
       enable: false
       num-points: 12
@@ -28,7 +32,7 @@ llsfrb:
       pause-duration: 5
 
       # orders are randomized according to the given spec
-    machines: [BS, CS1, RS1]
+    machines: [BS, CS1]
     machine-setup:
       customize: true
       rs1-colors: [RING_BLUE, RING_YELLOW]

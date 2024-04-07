@@ -2,7 +2,7 @@ version: '3.7'
 services:
   mongodb-check:
     image: ${MONGODB_IMAGE}:${MONGODB_TAG}
-    command: ["sh", "-c", "mongo --host ${RC_MONGODB_URI} --eval 'printjson(db.serverStatus())' || (sleep 1; exit -1)"]
+    command: ["sh", "-c", "mongosh ${RC_MONGODB_URI} --eval 'printjson(db.serverStatus())' || (sleep 1; exit -1)"]
     network_mode: "host"
     restart: on-failure:10
 
@@ -14,18 +14,14 @@ services:
       mongodb-check:
         condition: service_completed_successfully
     restart: "on-failure"
-    command: llsf-refbox --dump-cfg
+    command: llsf-refbox ${REFBOX_ARGS}
     volumes:
-      - ${REFBOX_CONFIG_GAME}:/etc/rcll-refbox/game/default_game.yaml:z
-      - ${REFBOX_CONFIG_SIMULATION}:/etc/rcll-refbox/simulation/defaultA_simulation.yaml:z
-      - ${REFBOX_CONFIG_COMM}:/etc/rcll-refbox/comm/default_comm.yaml:z
-      - ${REFBOX_CONFIG_MPS}:/etc/rcll-refbox/mps/default_mps.yaml:z
-      - ${REFBOX_CONFIG_TEAM}:/etc/rcll-refbox/team/default_team.yaml:z
-      - ${REFBOX_CONFIG_CHALLENGE}:/etc/rcll-refbox/challenges/default_challenges.yaml:z
-      - ${REFBOX_CONFIG_MONGODB}:/etc/rcll-refbox/mongodb/default_mongodb.yaml:z
+      - ${REFBOX_CONFIG}:/etc/rcll-refbox/:z
+      - ~/rcll-get-started/logs/refbox:/logs:z
 
   frontend:
     container_name: refbox-frontend
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
-    network_mode: "host"
+    ports:
+      - 8080:80
     restart: "no"

@@ -9,11 +9,13 @@ fi
 export REFBOX_FRONTEND_TAG=latest
 export REFBOX_TAG=latest
 export MONGODB_BACKEND_TAG=latest
-export MONGODB_TAG=5.0
+export MONGODB_TAG=7.0
 export MQTT_BRIDGE_TAG=master
 export MQTT_BROKER_TAG=latest
 export SIMULATOR_TAG=latest
 export SIMULATOR_FRONTEND_TAG=latest
+
+export REFBOX_COMPOSE_COMMAND=docker-compose
 
 
 export REFBOX_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-refbox-frontend
@@ -25,14 +27,8 @@ export MQTT_BROKER_IMAGE=docker.io/library/eclipse-mosquitto
 export SIMULATOR_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-simulator-frontend
 export SIMULATOR_IMAGE=quay.io/robocup-logistics/rcll-simulator
 
-export SIMULATOR_CONFIG_FILE=./../config/simulator/config.yaml
-export REFBOX_CONFIG_GAME=./../config/refbox/game.yaml
-export REFBOX_CONFIG_SIMULATION=./../config/refbox/simulation.yaml
-export REFBOX_CONFIG_COMM=./../config/refbox/comm.yaml
-export REFBOX_CONFIG_MPS=./../config/refbox/mps.yaml
-export REFBOX_CONFIG_TEAM=./../config/refbox/team.yaml
-export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_disabled.yaml
-export REFBOX_CONFIG_MONGODB=./../config/refbox/mongodb.yaml
+export REFBOX_CONFIG=./../config/refbox
+export REFBOX_ARGS=
 
 
 export RC_AUTO_SETUP=true
@@ -91,7 +87,7 @@ function rc_add_to_screen() {
   rc_setup_screen
   rc_clear_screen_tabs $1
   echo "Setting up screen tab $1"
-  screen -S ${RC_SCREEN_NAME} -X screen -t "$1" docker-compose -f ${rcll_compose_files_dir}/$1.yaml logs -f
+  screen -S ${RC_SCREEN_NAME} -X screen -t "$1" ${REFBOX_COMPOSE_COMMAND} -f ${rcll_compose_files_dir}/$1.yaml logs -f
 }
 
 
@@ -103,35 +99,44 @@ for func_name in "${function_names[@]}"; do
     # Define the function
     eval "rc_start_$func_name() {
       echo 'Starting ${func_name}'
-      docker-compose -f ${rcll_compose_files_dir}/${func_name}.yaml up -d
-      exit_code=$?
-      if [ ${exit_code} -ne 0 ]; then
-          #docker-compose -f ${rcll_compose_files_dir}/${func_name}.yaml logs
-          echo "${func_name} startup failed with exit code: $exit_code"
-          return -1
+      \${REFBOX_COMPOSE_COMMAND} -f \${rcll_compose_files_dir}/${func_name}.yaml up -d
+      # Check if the exit code variable is set
+      if [ -n "\${exit_code}" ]; then
+          # Check if the exit code is not equal to 0
+          if [ "\${exit_code}" -ne 0 ]; then
+              # Do something if the exit code is not 0
+              echo "Error: The exit code is not 0"
+          fi
+      else
+          # Handle the case when the exit code variable is not set
+          echo "Exit code is not sett"
       fi
       rc_add_to_screen ${func_name}
     }"
     eval "rc_stop_$func_name() {
       echo 'Stopping ${func_name}'
-      docker-compose -f ${rcll_compose_files_dir}/${func_name}.yaml down
+      \${REFBOX_COMPOSE_COMMAND} -f \${rcll_compose_files_dir}/${func_name}.yaml down
       rc_clear_screen_tabs ${func_name}
     }"
     eval "rc_pull_$func_name() {
       echo 'Pulling ${func_name}'
-      docker-compose -f ${rcll_compose_files_dir}/${func_name}.yaml pull
+      \${REFBOX_COMPOSE_COMMAND} -f \${rcll_compose_files_dir}/${func_name}.yaml pull
+    }"
+    eval "rc_enter_$func_name() {
+      echo 'Stopping ${func_name}'
+      docker exec -it $func_name /bin/sh
     }"
 done
 
 function rc_stop() {
   for func_name in "${function_names[@]}"; do
-      docker-compose -f ${rcll_compose_files_dir}/${func_name}.yaml stop
+      ${REFBOX_COMPOSE_COMMAND} -f ${rcll_compose_files_dir}/${func_name}.yaml stop
   done
 }
 
 function rc_pull() {
   for func_name in "${function_names[@]}"; do
-      docker-compose -f ${rcll_compose_files_dir}/${func_name}.yaml pull
+      ${REFBOX_COMPOSE_COMMAND} -f ${rcll_compose_files_dir}/${func_name}.yaml pull
   done
 }
 function rc_start() {

@@ -1,12 +1,13 @@
 %YAML 1.2
 ---
 ---
-# Navigation challenge with 3 machines on the field.
+# Production of a C0.
+# Machine positions are not provided.
 
 llsfrb:
   challenges:
     enable: true
-    name: "Navigation_Medium"
+    name: "Production_C0_No_MPS_Ground_Truth"
     # max is 7 x 8
     field:
       width: 5
@@ -14,22 +15,27 @@ llsfrb:
       # if true this effectively doubles the field size
       mirror: false
     # Phases in which the machine positions are broadcasted
-    send-mps-ground-truth: [PRODUCTION]
+    send-mps-ground-truth: []
 
     production-time: 1020
     orders:
       # if disabled, use default orders from rcll
       customize: true
+      # each order is named O<INTEGER>
+      O1:
+        base-color: BASE_RED
+        ring-colors: []
+        cap-color: CAP_GREY
     publish-routes:
-      enable: true
+      enable: false
       num-points: 12
       num-routes: 1
       pause-duration: 5
 
       # orders are randomized according to the given spec
-    machines: [BS, CS1, RS1]
+    machines: [BS, CS1]
     machine-setup:
-      customize: false
+      customize: true
       rs1-colors: [RING_BLUE, RING_YELLOW]
       rs2-colors: [RING_ORANGE, RING_GREEN]
       ring-specs:

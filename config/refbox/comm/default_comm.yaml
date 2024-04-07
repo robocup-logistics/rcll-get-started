@@ -5,7 +5,7 @@
 
 llsfrb:
   comm:
-    protobuf-dirs: ["@SHAREDIR@/msgs"]
+    protobuf-dirs: ["@SHAREDIR@/msgs/rcll-protobuf-msgs"]
     # TCP port the refbox listens on for controller connections.
     server-port: !tcp-port 4444
     # peer communication broadcast address.
@@ -20,21 +20,26 @@ llsfrb:
     # Do not specify both!
     public-peer:
       # host: !ipv4 192.168.122.255
-      host: !ipv4 localhost
+      host: !ipv4 127.0.0.1
       # port: !udp-port 4444
       send-port: !udp-port 4444
       recv-port: !udp-port 4445
 
     cyan-peer:
       # host: !ipv4 192.168.122.255
-      host: !ipv4 localhost
+      host: !ipv4 127.0.0.1
       # port: !udp-port 4441
       send-port: !udp-port 4441
       recv-port: !udp-port 4446
 
     magenta-peer:
       # host: !ipv4 192.168.122.255
-      host: !ipv4 localhost
+      host: !ipv4 127.0.0.1
       # port: !udp-port 4442
       send-port: !udp-port 4442
       recv-port: !udp-port 4447
+
+    # Turn this on if messages to instruct the refbox
+    # (SetTeamName, SetGameState, SetGamePhase)
+    # are also accepted from broadcast clients (e.g., the robots)
+    control-via-broadcast: false
