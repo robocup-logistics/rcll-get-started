@@ -1,0 +1,12 @@
+version: '3.7'
+services:
+  mongodb-backend:
+    image: ${MONGODB_BACKEND_IMAGE}:${MONGODB_BACKEND_TAG}
+    container_name: mongo-backend
+    restart: "no"
+    network_mode: "host"
+    # ports:
+    #   - "8085:8085"
+    environment:
+      - DB_URL=${RC_MONGODB_URI}
+      - DB_NAME=${RC_MONGODB_BACKEND_DB_NAME}

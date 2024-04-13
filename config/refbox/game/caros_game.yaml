@@ -1,0 +1,33 @@
+%YAML 1.2
+---
+---
+# Start a fresh game per default.
+
+llsfrb:
+  game:
+    # set to true to generate a random field at startup
+    # disabling randomization requires mongodb to be enabled as the game
+    # parameters are loaded from a mongodb game report in this case
+    random-field: false
+    # If enabled, some machines will randomly go DOWN for some period during
+    # the game. If disabled, no machine will go DOWN.
+    random-machine-down-times: true
+    random-machine-setup: true
+    random-orders: true
+    default-storage: true
+    restore-gamestate:
+      enable: false
+      phase: PRODUCTION
+    # load data from latest game report with a given name
+    # leave empty to always load from latest stored report
+    load-from-report: "caros-big-new"
+    # store game report under a name for later reference
+    store-to-report: ""
+
+    exploration-time: 0
+
+    # the size of the field (7x8 default) and whether it should be mirrored
+    field:
+      width: 6
+      height: 6
+      mirrored: true

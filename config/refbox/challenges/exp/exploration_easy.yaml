@@ -1,12 +1,12 @@
 %YAML 1.2
 ---
 ---
-# Production of a C0.
+# Exploration with 2 machines on the field.
 
 llsfrb:
   challenges:
     enable: true
-    name: "Production_C0"
+    name: "Exploration_Easy"
     # max is 7 x 8
     field:
       width: 5
@@ -14,17 +14,12 @@ llsfrb:
       # if true this effectively doubles the field size
       mirror: false
     # Phases in which the machine positions are broadcasted
-    send-mps-ground-truth: [PRODUCTION]
+    send-mps-ground-truth: []
 
     production-time: 1020
     orders:
       # if disabled, use default orders from rcll
       customize: true
-      # each order is named O<INTEGER>
-      O1:
-        base-color: BASE_RED
-        ring-colors: []
-        cap-color: CAP_GREY
     publish-routes:
       enable: false
       num-points: 12
@@ -32,9 +27,9 @@ llsfrb:
       pause-duration: 5
 
       # orders are randomized according to the given spec
-    machines: [BS, DS, CS1, RS1]
+    machines: [BS, CS1]
     machine-setup:
-      customize: true
+      customize: false
       rs1-colors: [RING_BLUE, RING_YELLOW]
       rs2-colors: [RING_ORANGE, RING_GREEN]
       ring-specs:
