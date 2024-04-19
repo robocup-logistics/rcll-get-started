@@ -8,8 +8,8 @@ broker_address="localhost"
 client = mqtt.Client(CallbackAPIVersion.VERSION1, "mps_gui")
 client.connect(broker_address, 1883)
 
-def dispose_base(color: str):
-    client.publish(team + "/prepare/BS", color)
+def dispose_base(side: str, color: str):
+    client.publish(team + "/prepare/BS/" + side, color)
 
 def retrieve_cap(station: str):
     client.publish(team + "/prepare/" + station, "RetrieveCap")
@@ -66,11 +66,11 @@ mount_blue_button_rs2 = tk.Button(tabs["RS2"], text="MountBlue", command=lambda:
 mount_blue_button_rs2.pack(pady=10)
 
 # Create Silver, Red, and Black buttons for BS group
-mount_silver_button_bs = tk.Button(tabs["BS"], text="Silver", command=lambda: dispose_base("Silver"))
+mount_silver_button_bs = tk.Button(tabs["BS"], text="Silver", command=lambda: dispose_base("output", "Silver"))
 mount_silver_button_bs.pack(pady=10)
-mount_red_button_bs = tk.Button(tabs["BS"], text="Red", command=lambda: dispose_base("Red"))
+mount_red_button_bs = tk.Button(tabs["BS"], text="Red", command=lambda: dispose_base("output", "Red"))
 mount_red_button_bs.pack(pady=10)
-mount_black_button_bs = tk.Button(tabs["BS"], text="Black", command=lambda: dispose_base("Black"))
+mount_black_button_bs = tk.Button(tabs["BS"], text="Black", command=lambda: dispose_base("output", "Black"))
 mount_black_button_bs.pack(pady=10)
 
 # Create a text field and a Prepare button for DS group
