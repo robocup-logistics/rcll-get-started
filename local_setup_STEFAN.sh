@@ -1,7 +1,6 @@
 #export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_nav.yaml
 #export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_prod_c0.yaml
 export REFBOX_CONFIG_CHALLENGE=./../config/refbox/challenge_disabled.yaml
-export RC_CYAN=GRIPS
 #export RC_MAGENTA=GRIPS
 export REFBOX_IMAGE=registry.gitlab.com/grips_robocup/team_server/refbox
 export REFBOX_FRONTEND_IMAGE=ghcr.io/pkohout/rcll-refbox-frontend
