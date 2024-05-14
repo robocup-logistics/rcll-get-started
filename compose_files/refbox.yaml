@@ -17,7 +17,7 @@ services:
       - ${REFBOX_CONFIG_MONGODB}:/etc/rcll-refbox/mongodb/default_mongodb.yaml
 
   frontend:
-    image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
+    image: "ghcr.io/pkohout/rcll-refbox-frontend:dockerfile"
     network_mode: "host"
     restart: "no"
   mongodb:

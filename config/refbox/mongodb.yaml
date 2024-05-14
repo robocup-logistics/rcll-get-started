@@ -5,7 +5,7 @@
 
 llsfrb:
   mongodb:
-    enable: true
+    enable: false
     hostport: localhost
     collections:
       text-log: log
