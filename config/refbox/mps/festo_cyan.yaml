@@ -2,7 +2,7 @@
 %YAML 1.2
 ---
 ---
-# Default settings, where all machines use plc connection
+# Default settings, where all machines use mockup connection
 # Copy this into your /etc/hosts file for convenience
 # C-BS 192.168.2.27
 # C-RS1 192.168.2.23
@@ -22,18 +22,18 @@ llsfrb:
       C-BS:
         active: true
         type: BS
-        host: 192.168.2.25
+        host: 192.168.2.27
         port: !tcp-port 4840
         connection: plc
       C-CS1:
         active: true
-        host: 192.168.2.21
+        host: 192.168.2.24
         port: !tcp-port 4840
         type: CS
         connection: plc
       C-CS2:
         active: true
-        host: 192.168.2.22
+        host: 192.168.2.25
         port: !tcp-port 4840
         type: CS
         connection: plc
@@ -45,61 +45,61 @@ llsfrb:
         connection: plc
       C-RS2:
         active: true
-        host: 192.168.2.24
+        host: 192.168.2.26
         port: !tcp-port 4840
         type: RS
         connection: plc
       C-DS:
         active: true
-        host: 192.168.2.26
+        host: 192.168.2.28
         port: !tcp-port 4840
         type: DS
         connection: plc
       C-SS:
         active: true
-        host: 192.168.2.20
+        host: 192.168.2.35
         port: !tcp-port 4840
         type: SS
         connection: plc
       M-BS:
         active: true
-        host: 192.168.2.35
+        host: 192.168.2.33
         port: !tcp-port 4840
         type: BS
-        connection: plc
+        connection: mockup
       M-CS1:
         active: true
-        host: 192.168.2.31
+        host: 192.168.2.30
         port: !tcp-port 4840
         type: CS
-        connection: plc
+        connection: mockup
       M-CS2:
         active: true
         host: 192.168.2.32
         port: !tcp-port 4840
         type: CS
-        connection: plc
+        connection: mockup
       M-RS1:
         active: true
-        host: 192.168.2.33
+        host: 192.168.2.31
         port: !tcp-port 4840
         type: RS
-        connection: plc
+        connection: mockup
       M-RS2:
         active: true
         host: 192.168.2.34
         port: !tcp-port 4840
         type: RS
-        connection: plc
+        connection: mockup
       M-DS:
         active: true
-        host: 192.168.2.36
+        host: 192.168.2.29
         port: !tcp-port 4840
         type: DS
-        connection: plc
+        connection: mockup
       M-SS:
         active: true
-        host: 192.168.2.35
+        host: 192.168.2.22
         port: !tcp-port 4840
         type: SS
-        connection: plc
+        connection: mockup
