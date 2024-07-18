@@ -1,5 +1,5 @@
 if [ -z "$rcll_get_started_dir" ]; then
-    rcll_get_started_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+    export rcll_get_started_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 fi
 
 if [ -z "$rcll_compose_files_dir" ]; then
@@ -186,7 +186,6 @@ function rc_dump_game_reports() {
   date=$(date +"%Y-%m-%d_%T")
   command=$(echo mongodump -d rcll -c game_report --gzip --archive=/data/db/game_report_$date.gz)
   docker exec mongodb $command
-  mv $rcll_get_started_dir/compose_files/data/game_report_$date.gz game_report_$date.gz
 }
 
 function rc_restore_game_reports() {
@@ -211,9 +210,9 @@ if [ ! -f "$LOCAL_SETUP" ]; then
   echo "" > $LOCAL_SETUP
 fi
 
-DATA_FOLDER=$rcll_get_started_dir/compose_files/data
-if [ ! -d "$DATA_FOLDER" ]; then
-  echo "data mount for mongodb [$DATA_FOLDER] DOES NOT exist, creating empty file!"
-  mkdir -p $DATA_FOLDER
+RC_MONGODB_DATA_DIR=$rcll_get_started_dir/compose_files/data
+if [ ! -d "$DATA_DIR" ]; then
+  echo "data mount for mongodb [$RC_MONGODB_DATA_DIR] DOES NOT exist, creating empty file!"
+  mkdir -p $RC_MONGODB_DATA_DIR
 fi
 source $LOCAL_SETUP
