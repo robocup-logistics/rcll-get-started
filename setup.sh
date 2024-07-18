@@ -210,7 +210,7 @@ if [ ! -f "$LOCAL_SETUP" ]; then
   echo "" > $LOCAL_SETUP
 fi
 
-RC_MONGODB_DATA_DIR=$rcll_get_started_dir/compose_files/data
+export RC_MONGODB_DATA_DIR=$rcll_get_started_dir/compose_files/data
 if [ ! -d "$DATA_DIR" ]; then
   echo "data mount for mongodb [$RC_MONGODB_DATA_DIR] DOES NOT exist, creating empty file!"
   mkdir -p $RC_MONGODB_DATA_DIR
