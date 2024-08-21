@@ -6,6 +6,7 @@ if [ -z "$rcll_compose_files_dir" ]; then
     rcll_compose_files_dir="${rcll_get_started_dir}/compose_files"
 fi
 
+export REFBOX_LOGS_DIR=$rcll_get_started_dir/logs
 export REFBOX_FRONTEND_TAG=latest
 export REFBOX_TAG=latest
 export MONGODB_BACKEND_TAG=latest
