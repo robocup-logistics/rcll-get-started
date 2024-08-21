@@ -103,7 +103,7 @@ for func_name in "${function_names[@]}"; do
       # Check if the exit code variable is set
       if [ -n "\${exit_code}" ]; then
           # Check if the exit code is not equal to 0
-          if [ "\${exit_code}" -ne 0 ]; then
+          if [[ "\${exit_code}" -ne 0 ]]; then
               # Do something if the exit code is not 0
               echo "Error: The exit code is not 0"
           fi
@@ -211,7 +211,7 @@ if [ ! -f "$LOCAL_SETUP" ]; then
 fi
 
 export RC_MONGODB_DATA_DIR=$rcll_get_started_dir/compose_files/data
-if [ ! -d "$DATA_DIR" ]; then
+if [ ! -d "$RC_MONGODB_DATA_DIR" ]; then
   echo "data mount for mongodb [$RC_MONGODB_DATA_DIR] DOES NOT exist, creating empty file!"
   mkdir -p $RC_MONGODB_DATA_DIR
 fi
