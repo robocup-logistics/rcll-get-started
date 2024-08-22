@@ -17,7 +17,7 @@ services:
     command: llsf-refbox ${REFBOX_ARGS}
     volumes:
       - ${REFBOX_CONFIG}:/etc/rcll-refbox/:z
-      - ~/rcll-get-started/logs/refbox:/logs:z
+      - ${REFBOX_LOGS_DIR}/refbox:/logs:z
 
   frontend:
     container_name: refbox-frontend
