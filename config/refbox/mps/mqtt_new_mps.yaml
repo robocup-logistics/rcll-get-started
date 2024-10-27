@@ -1,0 +1,93 @@
+%YAML 1.2
+---
+---
+# Configuration for using mqtt machines
+
+llsfrb:
+  mps:
+    enable: true
+    stations:
+      C-BS:
+        active: true
+        type: BS
+        host: localhost
+        port: !tcp-port 1883
+        connection: mqtt
+      C-CS1:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: CS
+        connection: mqtt
+      C-CS2:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: CS
+        connection: mqtt
+      C-RS1:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: RS
+        connection: mqtt
+      C-RS2:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: RS
+        connection: mqtt
+      C-DS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: DS
+        connection: mqtt
+      C-SS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: SS
+        connection: mqtt
+      M-BS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: BS
+        connection: mqtt
+      M-CS1:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: CS
+        connection: mqtt
+      M-CS2:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: CS
+        connection: mqtt
+      M-RS1:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: RS
+        connection: mqtt
+      M-RS2:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: RS
+        connection: mqtt
+      M-DS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: DS
+        connection: mqtt
+      M-SS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: SS
+        connection: mqtt

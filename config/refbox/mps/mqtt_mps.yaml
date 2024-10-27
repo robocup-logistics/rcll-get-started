@@ -1,0 +1,93 @@
+%YAML 1.2
+---
+---
+# Configuration for using mqtt_legacy machines
+
+llsfrb:
+  mps:
+    enable: true
+    stations:
+      C-BS:
+        active: true
+        type: BS
+        host: localhost
+        port: !tcp-port 1883
+        connection: mqtt_legacy
+      C-CS1:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: CS
+        connection: mqtt_legacy
+      C-CS2:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: CS
+        connection: mqtt_legacy
+      C-RS1:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: RS
+        connection: mqtt_legacy
+      C-RS2:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: RS
+        connection: mqtt_legacy
+      C-DS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: DS
+        connection: mqtt_legacy
+      C-SS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: SS
+        connection: mqtt_legacy
+      M-BS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: BS
+        connection: mqtt_legacy
+      M-CS1:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: CS
+        connection: mqtt_legacy
+      M-CS2:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: CS
+        connection: mqtt_legacy
+      M-RS1:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: RS
+        connection: mqtt_legacy
+      M-RS2:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: RS
+        connection: mqtt_legacy
+      M-DS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: DS
+        connection: mqtt_legacy
+      M-SS:
+        active: true
+        host: localhost
+        port: !tcp-port 1883
+        type: SS
+        connection: mqtt_legacy
