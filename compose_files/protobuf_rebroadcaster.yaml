@@ -1,0 +1,10 @@
+version: '3.7'
+services:
+  rebroadcaster:
+    container_name: protobuf_rebroadcaster
+    image: "${REFBOX_IMAGE}:${REFBOX_TAG}"
+    network_mode: "host"
+    restart: "on-failure"
+    command: rcll-proto-rebroadcaster
+    volumes:
+      - ${REFBOX_CONFIG}:/etc/rcll-refbox/:ro,z
