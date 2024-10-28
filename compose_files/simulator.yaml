@@ -8,6 +8,7 @@ services:
     entrypoint: bash -c "dotnet run --framework net6.0 -cfg cfg/config.yaml"
     volumes:
       - ${SIMULATOR_CONFIG_FILE}:/simulator/cfg/config.yaml:z
+      - ${REFBOX_LOGS_DIR}/simulator:/simulator/logs:z
  #   ports:
  #     - 8000:8000
  #   extra_hosts:
