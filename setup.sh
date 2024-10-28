@@ -36,6 +36,7 @@ export RC_AUTO_SETUP=true
 export RC_AUTO_START=false
 export RC_MONGODB_START=true
 export RC_MQTT_START=false
+export RC_PROTOBUF_REBROADCASTER_START=false
 export RC_MONGODB_BACKEND_START=false
 export RC_MQTT_BROKER_START=false
 export RC_SIMULATOR_START=false
@@ -93,7 +94,7 @@ function rc_add_to_screen() {
 
 
 # Define a list of function names
-function_names=("refbox" "mongodb_backend" "mqtt_bridge" "mongodb" "simulator" "mqtt_broker")
+function_names=("refbox" "mongodb_backend" "mqtt_bridge" "mongodb" "simulator" "mqtt_broker" "protobuf_rebroadcaster")
 
 # Loop through the list and define functions
 for func_name in "${function_names[@]}"; do
@@ -124,7 +125,7 @@ for func_name in "${function_names[@]}"; do
       \${REFBOX_COMPOSE_COMMAND} -f \${rcll_compose_files_dir}/${func_name}.yaml pull
     }"
     eval "rc_enter_$func_name() {
-      echo 'Stopping ${func_name}'
+      echo 'Entering ${func_name}'
       docker exec -it $func_name /bin/sh
     }"
 done
@@ -153,13 +154,13 @@ function rc_start() {
     if [[ ! -z "${RC_CYAN}" ]]; then
       echo "CYAN will be: $RC_CYAN"
       #REFBOX_ARGS=$(echo "$REFBOX_ARGS && rcll-refbox-instruct -cyan $RC_CYAN")
-      cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -c$RC_CYAN")
+      cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -c $RC_CYAN")
       echo "Will run in screen: $cmd"
       screen -m -d bash -c "$cmd"
     fi
     if [[ ! -z "${RC_MAGENTA}" ]]; then
       echo "MAGENTA will be: $RC_MAGENTA"
-      cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -m$RC_MAGENTA")
+      cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -m $RC_MAGENTA")
       echo "Will run in screen: $cmd"
       screen -m -d bash -c "$cmd"
     fi
@@ -174,7 +175,9 @@ function rc_start() {
   if [ "${RC_SIMULATOR_START}" = "true" ]; then
     rc_start_simulator
   fi
-
+  if [ "${RC_PROTOBUF_REBROADCASTER_START}" = "true" ]; then
+    rc_start_protobuf_rebroadcaster
+  fi
   if [ "${RC_MQTT_START}" = "true" ]; then
     rc_start_mqtt_bridge
   fi
