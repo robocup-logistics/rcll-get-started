@@ -136,6 +136,12 @@ function rc_stop() {
   done
 }
 
+function rc_down() {
+  for func_name in "${function_names[@]}"; do
+      ${REFBOX_COMPOSE_COMMAND} -f ${rcll_compose_files_dir}/${func_name}.yaml down
+  done
+}
+
 function rc_pull() {
   for func_name in "${function_names[@]}"; do
       ${REFBOX_COMPOSE_COMMAND} -f ${rcll_compose_files_dir}/${func_name}.yaml pull
