@@ -5,7 +5,7 @@ services:
     container_name: protobuf-rebroadcaster
     image: "${REFBOX_IMAGE}:${REFBOX_TAG}"
     network_mode: "host"
-    restart: "on-failure"
+    restart: on-failure:10
     command: rcll-proto-rebroadcaster
     volumes:
-      - ${REFBOX_CONFIG}:/etc/rcll-refbox/:ro,z
+      - ${RC_PROTO_REBROADCASTER_CONFIG}:/etc/rcll-refbox/:z

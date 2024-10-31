@@ -29,6 +29,7 @@ export SIMULATOR_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-simulator-fronten
 export SIMULATOR_IMAGE=quay.io/robocup-logistics/rcll-simulator
 
 export REFBOX_CONFIG=./../config/refbox
+export RC_PROTO_REBROADCASTER_CONFIG=./../config/proto_rebroadcaster
 export REFBOX_ARGS=
 
 

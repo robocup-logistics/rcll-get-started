@@ -16,7 +16,7 @@ services:
     depends_on:
       mongodb-check:
         condition: service_completed_successfully
-    restart: "on-failure"
+    restart: on-failure:10
     command: llsf-refbox ${REFBOX_ARGS}
     volumes:
       - ${REFBOX_CONFIG}:/etc/rcll-refbox/:z
@@ -27,4 +27,4 @@ services:
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
     ports:
       - 8080:80
-    restart: "no"
+    restart: on-failure:10
