@@ -1,4 +1,5 @@
 version: '3.7'
+name: mongodb-backend
 services:
   mongodb-backend:
     image: ${MONGODB_BACKEND_IMAGE}:${MONGODB_BACKEND_TAG}

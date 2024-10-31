@@ -1,4 +1,6 @@
 version: '3.7'
+
+name: refbox-compose
 services:
   mongodb-check:
     container_name: mongodb-check

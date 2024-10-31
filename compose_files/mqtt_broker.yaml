@@ -1,7 +1,8 @@
 version: "3"
+name: mqtt-broker
 services:
   broker:
-    container_name: mqtt-bridge
+    container_name: mqtt-broker
     image: ${MQTT_BROKER_IMAGE}:${MQTT_BROKER_TAG}
     network_mode: host
     volumes:

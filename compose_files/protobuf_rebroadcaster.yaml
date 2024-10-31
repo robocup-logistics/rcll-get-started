@@ -1,7 +1,8 @@
 version: '3.7'
+name: protobuf-rebroadcaster
 services:
-  rebroadcaster:
-    container_name: protobuf_rebroadcaster
+  protobuf-rebroadcaster:
+    container_name: protobuf-rebroadcaster
     image: "${REFBOX_IMAGE}:${REFBOX_TAG}"
     network_mode: "host"
     restart: "on-failure"
