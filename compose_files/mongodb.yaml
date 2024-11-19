@@ -8,4 +8,4 @@ services:
     restart: "no"
     command: mongod --port ${RC_MONGODB_PORT}
     volumes:
-      - '${RC_MONGODB_DATA_DIR}:/data/db:z'
+      - '${RC_MONGODB_DATA_DIR}:/data:z'
