@@ -1,0 +1,9 @@
+export RC_MAGENTA=Carologistics
+export RC_MQTT_BROKER_START=true
+export RC_PROTOBUF_REBROADCASTER_START=false
+export RC_SIMULATOR_START=true
+export REFBOX_TAG=latest
+export SIMULATOR_TAG=twendt_fixes
+export SIMULATOR_CONFIG_FILE=${rcll_get_started_dir}/config/simulator/config.yaml
+export REFBOX_COMPOSE_COMMAND=podman-compose
+export REFBOX_ARGS=" --cfg-mps mps/mqtt_new_mps.yaml --cfg-mongodb mongodb/enable_mongodb.yaml --cfg-comm comm/default_comm.yaml --cfg-team team/default_team.yaml"
