@@ -27,4 +27,6 @@ services:
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
     ports:
       - 8080:80
+    volumes:
+      - /var/tmp/${USER}:/usr/local/apache2/logs/:z
     restart: on-failure:10
