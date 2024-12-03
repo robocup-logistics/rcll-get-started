@@ -189,6 +189,11 @@ function rc_start() {
   fi
 }
 
+function rc_restart() {
+  rc_stop
+  rc_start
+}
+
 function rc_dump_game_reports() {
   date=$(date +"%Y-%m-%d_%T")
   command=$(echo mongodump -d rcll -c game_report --gzip --archive=/data/db/game_report_$date.gz)
