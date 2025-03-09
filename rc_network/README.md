@@ -46,6 +46,11 @@ set-inform http://<ip-address-of-console>:8080/inform
 9. In Settings tab, set up a 5 GHz network called `RefBox.NET` with password `dieirrenivans`.
 10. In unifi devices tab you can configure the channels of the wifi network.
 
+### Access devices after pairing
+SSH access will be disabled per default after pairing!
+If you want to connect via SSH you need to go to the unifi console and search in settings for "Device Authentification".
+There you can enable ssh access and set username and password.
+
 ## Flash FirmwareA
 If you need to upgrade the firmware of the AP, download it, scp it to the AP via (make sure to copy to tmp as `fwupdate.bin`):
 ```
