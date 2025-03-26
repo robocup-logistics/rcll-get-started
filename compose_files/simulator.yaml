@@ -9,17 +9,10 @@ services:
     entrypoint: bash -c "dotnet run --framework net6.0 -cfg cfg/config.yaml"
     volumes:
       - ${SIMULATOR_CONFIG_FILE}:/simulator/cfg/config.yaml:z
-      #- ${REFBOX_LOGS_DIR}/simulator:/simulator/logs:z
- #   ports:
- #     - 8000:8000
- #   extra_hosts:
- #     - "host.docker.internal:host-gateway"
+      - ${REFBOX_LOGS_DIR}/simulator:/simulator/logs:z
   simulator-frontend:
     container_name: simulator-frontend
     image: "${SIMULATOR_FRONTEND_IMAGE}:${SIMULATOR_FRONTEND_TAG}"
     network_mode: "host"
     depends_on:
       - simulator
- #   ports:
- #     - 4200:4200
-
