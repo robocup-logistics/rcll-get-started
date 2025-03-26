@@ -135,6 +135,12 @@ function rc_stop() {
   done
 }
 
+function rc_down() {
+  for func_name in "${function_names[@]}"; do
+      ${REFBOX_COMPOSE_COMMAND} -f ${rcll_compose_files_dir}/${func_name}.yaml down
+  done
+}
+
 function rc_pull() {
   for func_name in "${function_names[@]}"; do
       ${REFBOX_COMPOSE_COMMAND} -f ${rcll_compose_files_dir}/${func_name}.yaml pull
@@ -183,10 +189,19 @@ function rc_start() {
   fi
 }
 
+function rc_restart() {
+  rc_stop
+  rc_start
+}
+
 function rc_dump_game_reports() {
   date=$(date +"%Y-%m-%d_%T")
   command=$(echo mongodump -d rcll -c game_report --gzip --archive=/data/db/game_report_$date.gz)
   docker exec mongodb $command
+}
+
+function rc_locate_refbox() {
+  sudo $rcll_get_started_dir/scripts/refbox_locator.py $1
 }
 
 function rc_restore_game_reports() {
