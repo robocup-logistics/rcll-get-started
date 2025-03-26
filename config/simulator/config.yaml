@@ -3,85 +3,71 @@ version: 2
 stations:
   C-BS:
     active: true
-    debug: true
     type: BS
     position: MZ18
     orientation: 0
   C-CS1:
     active: true
-    debug: true
     type: CS
     position: MZ54
     orientation: 135
   C-CS2:
     active: true
-    debug: true
     type: CS
     position: CZ77
     orientation: 90
   C-RS1:
     active: true
-    debug: true
     type: RS
     position: CZ21
     orientation: 180
   C-RS2:
     active: true
-    debug: true
     type: RS
     position: MZ25
     orientation: 45
   C-DS:
     active: true
-    debug: true
     type: DS
     position: MZ72
     orientation: 90
   C-SS:
     active: true
-    debug: true
     type: SS
     position: MZ77
     orientation: 270
   M-BS:
     active: true
-    debug: true
     type: BS
     position: MZ28
     orientation: 0
   M-CS1:
     active: true
-    debug: true
     type: CS
     position: CZ54
     orientation: 45
   M-CS2:
     active: true
-    debug: true
     type: CS
     position: CZ47
     orientation: 90
   M-RS1:
     active: true
-    debug: true
     type: RS
     position: MZ21
     orientation: 135
   M-RS2:
     active: true
-    debug: true
     type: RS
     position: CZ15
     orientation: 180
   M-DS:
     active: true
-    debug: true
     type: DS
     position: CZ72
     orientation: 225
   M-SS:
     active: true
-    debug: true
     type: SS
     position: MZ78
     orientation: 0
@@ -138,10 +124,12 @@ teams:
   CYAN:
     name: GRIPS
     active: true
+    markerles: true
   MAGENTA:
     name: Carologistics
     active: true
     keyphrase: randomkey
+    markerles: false
 refbox:
   public:
     ip: 127.0.0.1
@@ -163,17 +151,23 @@ webui:
   port: 8000
 general:
   timefactor: 1.0
+  monitor-ground-truth: true # If true the sim will check if the refbox has the right world model about the robots and mps
+  # All divergences will be logged in GTMonitor.log
+  debug: true
+  warn-to-console: true
+  error-to-console: true
+  report-machine-direct: true # If false the robot will send the reports to the agent as MachineReport
   fixed-mps-position: false
-  ignore-teamcolor: true
-  robot-prepare-mps: true # robot is responsible to send prepare machine messages, option might be removed in future as teams tend to send prepare via their main control unit
   robot-direct-beacon: true  # Robot is expected to send his beaconsignals directly to the refbox via udp
   enable-barcode-scanner: true
+  exploration-probability: 80 # Percentage of how likely it is to find an entire machine
+  robot-explore-zone-duration: 1 # in seconds
   robot-move-zone-duration: 2 # in seconds
   robot-grab-product-duration: 10 # duration for a single try of a grab
-  robot-maximum-grab-duration: 40 # duration after which a grab is stopped
   robot-place-product-duration: 10 # duration for a single place try
   belt-action-duration: 2.5 # time the belt takes to move a product from one place to another - taken from gazebo
   bs-dispense-duration: 2.5 # time the base station takes to dispense a base - taken from gazebo
   cs-buffer-duration: 3.5  # buffer cap - taken from gazebo
   rs-mount-duration: 3.5  # mounting a ring 3.5 seconds - taken from gazebo
   ds-deliver-duration: 3.5  # time it takes to deliver - taken from gazebo
+  ss-task-duration: 3.5  # time it takes to store/retrieve
