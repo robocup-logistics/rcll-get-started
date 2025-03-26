@@ -200,6 +200,10 @@ function rc_dump_game_reports() {
   docker exec mongodb $command
 }
 
+function rc_locate_refbox() {
+  sudo $rcll_get_started_dir/scripts/refbox_locator.py $1
+}
+
 function rc_restore_game_reports() {
   if [ -z "$1" ]; then
     echo "Please specify the archive to restore to the mongodb instance."
