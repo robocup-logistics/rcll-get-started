@@ -204,6 +204,10 @@ function rc_locate_refbox() {
   sudo $rcll_get_started_dir/scripts/refbox_locator.py $1
 }
 
+function rc_name_report() {
+  $rcll_get_started_dir/scripts/name_report.py $1
+}
+
 function rc_restore_game_reports() {
   if [ -z "$1" ]; then
     echo "Please specify the archive to restore to the mongodb instance."
