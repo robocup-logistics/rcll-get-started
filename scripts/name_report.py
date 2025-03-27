@@ -92,12 +92,15 @@ def safe_addstr(win, y, x, s, attr=curses.A_NORMAL):
 def display_table(stdscr, titles, rows, reports, collection):
     """
     Display a table with headers and rows.
-    Supports vertical and horizontal scrolling.
-    Press Enter to edit the "Name" field of the selected row.
+    Supports both vertical and horizontal scrolling.
+    The view scrolls vertically only when the selected row moves out of the visible area.
+    Use Page Up/Page Down for fast scrolling.
+    Press Enter to edit the "Name" field.
     """
     curses.curs_set(0)
     current_row = 0
     scroll_x = 0
+    scroll_y = 0
 
     def calculate_column_widths():
         cols = list(zip(*([titles] + rows)))
@@ -116,21 +119,29 @@ def display_table(stdscr, titles, rows, reports, collection):
             safe_addstr(stdscr, 0, x_pos, title.center(width), curses.A_REVERSE)
             x_pos += width
 
-        # Determine vertical visible rows (header occupies row 0).
-        visible_rows = max_y - 1
-        start_index = 0 if current_row < visible_rows else current_row - visible_rows + 1
+        visible_rows = max_y - 1  # Data rows available (header uses row 0)
 
-        for i in range(start_index, min(len(rows), start_index + visible_rows)):
+        # Draw rows from scroll_y to scroll_y + visible_rows.
+        for i in range(scroll_y, min(len(rows), scroll_y + visible_rows)):
             row_data = rows[i]
             x_pos = -scroll_x
             attr = curses.A_REVERSE if i == current_row else curses.A_NORMAL
             for cell, width in zip(row_data, col_widths):
-                safe_addstr(stdscr, i - start_index + 1, x_pos, str(cell).center(width), attr)
+                safe_addstr(stdscr, i - scroll_y + 1, x_pos, str(cell).center(width), attr)
                 x_pos += width
 
         stdscr.refresh()
 
     while True:
+        max_y, max_x = stdscr.getmaxyx()
+        visible_rows = max_y - 1
+
+        # Adjust vertical scroll only if current_row goes out of visible area.
+        if current_row < scroll_y:
+            scroll_y = current_row
+        elif current_row >= scroll_y + visible_rows:
+            scroll_y = current_row - visible_rows + 1
+
         draw_table()
         key = stdscr.getch()
         if key == curses.KEY_UP and current_row > 0:
@@ -140,13 +151,15 @@ def display_table(stdscr, titles, rows, reports, collection):
         elif key == curses.KEY_LEFT and scroll_x > 0:
             scroll_x = max(0, scroll_x - 10)
         elif key == curses.KEY_RIGHT:
-            _, max_x = stdscr.getmaxyx()
             total_width = sum(calculate_column_widths())
             if scroll_x < total_width - max_x:
                 scroll_x += 10
+        elif key == curses.KEY_NPAGE:  # Page Down
+            current_row = min(len(rows) - 1, current_row + visible_rows)
+        elif key == curses.KEY_PPAGE:  # Page Up
+            current_row = max(0, current_row - visible_rows)
         elif key in [10, 13]:  # Enter key to edit "Name"
             curses.echo()
-            max_y, _ = stdscr.getmaxyx()
             prompt = "Enter new report name: "
             safe_addstr(stdscr, max_y - 1, 0, prompt)
             stdscr.clrtoeol()
@@ -156,11 +169,12 @@ def display_table(stdscr, titles, rows, reports, collection):
             report["report_name"] = new_name
             collection.update_one({"_id": report["_id"]}, {"$set": {"report_name": new_name}})
             rows[current_row][2] = new_name
-        elif key == 27:  # ESC key
+        elif key == 27:  # ESC key to exit
             break
 
 def main(stdscr, collection):
-    reports = list(collection.find())
+    # Retrieve reports sorted by start_time descending (newest first)
+    reports = list(collection.find().sort("start_time", -1))
     if not reports:
         safe_addstr(stdscr, 0, 0, "No reports found. Press any key.")
         stdscr.getch()
