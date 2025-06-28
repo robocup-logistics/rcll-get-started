@@ -29,6 +29,7 @@ export SIMULATOR_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-simulator-fronten
 export SIMULATOR_IMAGE=quay.io/robocup-logistics/rcll-simulator
 
 export REFBOX_CONFIG=./../config/refbox
+export RC_PROTO_REBROADCASTER_CONFIG=./../config/proto_rebroadcaster
 export REFBOX_ARGS=
 
 
@@ -36,6 +37,7 @@ export RC_AUTO_SETUP=true
 export RC_AUTO_START=false
 export RC_MONGODB_START=true
 export RC_MQTT_START=false
+export RC_PROTOBUF_REBROADCASTER_START=false
 export RC_MONGODB_BACKEND_START=false
 export RC_MQTT_BROKER_START=false
 export RC_SIMULATOR_START=false
@@ -93,7 +95,7 @@ function rc_add_to_screen() {
 
 
 # Define a list of function names
-function_names=("refbox" "mongodb_backend" "mqtt_bridge" "mongodb" "simulator" "mqtt_broker")
+function_names=("refbox" "mongodb_backend" "mqtt_bridge" "mongodb" "simulator" "mqtt_broker" "protobuf_rebroadcaster")
 
 # Loop through the list and define functions
 for func_name in "${function_names[@]}"; do
@@ -180,7 +182,9 @@ function rc_start() {
   if [ "${RC_SIMULATOR_START}" = "true" ]; then
     rc_start_simulator
   fi
-
+  if [ "${RC_PROTOBUF_REBROADCASTER_START}" = "true" ]; then
+    rc_start_protobuf_rebroadcaster
+  fi
   if [ "${RC_MQTT_START}" = "true" ]; then
     rc_start_mqtt_bridge
   fi
