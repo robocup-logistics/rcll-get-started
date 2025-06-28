@@ -6,7 +6,7 @@ services:
     image: "${SIMULATOR_IMAGE}:${SIMULATOR_TAG}"
     network_mode: "host"
     restart: 'no'
-    entrypoint: bash -c "dotnet run --framework net6.0 -cfg cfg/config.yaml"
+    entrypoint: bash -c "dotnet run --framework net8.0 -cfg cfg/config.yaml"
     volumes:
       - ${SIMULATOR_CONFIG_FILE}:/simulator/cfg/config.yaml:z
       - ${REFBOX_LOGS_DIR}/simulator:/simulator/logs:z
