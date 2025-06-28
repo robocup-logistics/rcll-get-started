@@ -1,4 +1,5 @@
 version: '3.7'
+# name: mqtt-bridge
 services:
   mqtt-bridge:
     container_name: mqtt-bridge
