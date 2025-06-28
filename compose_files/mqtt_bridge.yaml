@@ -1,6 +1,7 @@
 version: '3.7'
 services:
-  mqtt:
+  mqtt-bridge:
+    container_name: mqtt-bridge
     image: "${MQTT_BRIDGE_IMAGE}:${MQTT_BRIDGE_TAG}"
     network_mode: "host"
     restart: "on-failure"

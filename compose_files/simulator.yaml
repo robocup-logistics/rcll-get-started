@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   simulator:
+    container_name: simulator
     image: "${SIMULATOR_IMAGE}:${SIMULATOR_TAG}"
     network_mode: "host"
     restart: 'no'
@@ -12,6 +13,7 @@ services:
  #   extra_hosts:
  #     - "host.docker.internal:host-gateway"
   simulator-frontend:
+    container_name: simulator-frontend
     image: "${SIMULATOR_FRONTEND_IMAGE}:${SIMULATOR_FRONTEND_TAG}"
     network_mode: "host"
     depends_on:

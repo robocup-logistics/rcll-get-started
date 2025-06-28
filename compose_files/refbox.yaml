@@ -1,6 +1,7 @@
 version: '3.7'
 services:
   mongodb-check:
+    container_name: mongodb-check
     image: ${MONGODB_IMAGE}:${MONGODB_TAG}
     command: ["sh", "-c", "mongosh ${RC_MONGODB_URI} --eval 'printjson(db.serverStatus())' || (sleep 1; exit -1)"]
     network_mode: "host"
