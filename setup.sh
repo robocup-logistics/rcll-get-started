@@ -6,7 +6,7 @@ if [ -z "$rcll_compose_files_dir" ]; then
     rcll_compose_files_dir="${rcll_get_started_dir}/compose_files"
 fi
 
-export REFBOX_LOGS_DIR=$rcll_get_started_dir/logs
+# Version tags of the softare
 export REFBOX_FRONTEND_TAG=latest
 export REFBOX_TAG=latest
 export MONGODB_BACKEND_TAG=latest
@@ -16,9 +16,7 @@ export MQTT_BROKER_TAG=latest
 export SIMULATOR_TAG=latest
 export SIMULATOR_FRONTEND_TAG=latest
 
-export REFBOX_COMPOSE_COMMAND=docker-compose
-
-
+# Source URLs to obtain the container images from
 export REFBOX_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-refbox-frontend
 export REFBOX_IMAGE=quay.io/robocup-logistics/rcll-refbox
 export MONGODB_BACKEND_IMAGE=quay.io/robocup-logistics/mongodb-backend
@@ -28,13 +26,27 @@ export MQTT_BROKER_IMAGE=docker.io/library/eclipse-mosquitto
 export SIMULATOR_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-simulator-frontend
 export SIMULATOR_IMAGE=quay.io/robocup-logistics/rcll-simulator
 
+# logging directory
+export REFBOX_LOGS_DIR=$rcll_get_started_dir/logs
+
+# compose command (change in case you use alternative tools like podman
+export REFBOX_COMPOSE_COMMAND=docker-compose
+
+# location of config files
 export REFBOX_CONFIG=./../config/refbox
 export RC_PROTO_REBROADCASTER_CONFIG=./../config/proto_rebroadcaster
+export MQTT_BROKER_CONFIG=${rcll_get_started_dir}/config/mosquitto
+export SIMULATOR_CONFIG_FILE=${rcll_get_started_dir}/config/simulator/config.yaml
+
+# pass arguments to refbox
 export REFBOX_ARGS=
 
-
+# customization of rc_start
+# automatically setup teams
 export RC_AUTO_SETUP=true
+# requires RC_AUTO_SETUP, automatically enter setup phase after teams are set
 export RC_AUTO_START=false
+# individual components that can be optionally started
 export RC_MONGODB_START=true
 export RC_MQTT_START=false
 export RC_PROTOBUF_REBROADCASTER_START=false
@@ -42,6 +54,7 @@ export RC_MONGODB_BACKEND_START=false
 export RC_MQTT_BROKER_START=false
 export RC_SIMULATOR_START=false
 
+# session name of screen
 export RC_SCREEN_NAME=rcll
 
 export RC_MONGODB_PORT=27017
@@ -54,9 +67,6 @@ export RC_MQTT_REFBOX=localhost
 export RC_MQTT_TEAM=GRIPS
 export RC_MQTT_KEY=randomkey
 
-export MQTT_BROKER_CONFIG=${rcll_get_started_dir}/config/mosquitto
-
-export SIMULATOR_CONFIG_FILE=${rcll_get_started_dir}/config/simulator/config.yaml
 
 function rc_setup_screen() {
   if ! screen -list | grep -q "${RC_SCREEN_NAME}"; then
