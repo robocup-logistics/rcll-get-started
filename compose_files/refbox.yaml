@@ -16,7 +16,7 @@ services:
       mongodb-check:
         condition: service_completed_successfully
     restart: on-failure:10
-    command: llsf-refbox ${REFBOX_ARGS}
+    command: /bin/sh -c "llsf-refbox ${REFBOX_ARGS}"
     volumes:
       - ${REFBOX_CONFIG}:/etc/rcll-refbox/:z
       - ${REFBOX_LOGS_DIR}/refbox:/logs:z
