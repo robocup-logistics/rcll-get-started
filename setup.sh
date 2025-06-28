@@ -56,6 +56,8 @@ export RC_MQTT_KEY=randomkey
 
 export MQTT_BROKER_CONFIG=${rcll_get_started_dir}/config/mosquitto
 
+export SIMULATOR_CONFIG_FILE=${rcll_get_started_dir}/config/simulator/config.yaml
+
 function rc_setup_screen() {
   if ! screen -list | grep -q "${RC_SCREEN_NAME}"; then
     # Create a new screen session
