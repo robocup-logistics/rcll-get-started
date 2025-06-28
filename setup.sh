@@ -126,8 +126,12 @@ for func_name in "${function_names[@]}"; do
       \${REFBOX_COMPOSE_COMMAND} -f \${rcll_compose_files_dir}/${func_name}.yaml pull
     }"
     eval "rc_enter_$func_name() {
-      echo 'Stopping ${func_name}'
+      echo 'Entering ${func_name}'
       docker exec -it $func_name /bin/sh
+    }"
+    eval "rc_exec_$func_name() {
+      echo 'Executing ${func_name}'
+      docker exec -it $func_name \"$@\"
     }"
 done
 
@@ -161,13 +165,13 @@ function rc_start() {
     if [[ ! -z "${RC_CYAN}" ]]; then
       echo "CYAN will be: $RC_CYAN"
       #REFBOX_ARGS=$(echo "$REFBOX_ARGS && rcll-refbox-instruct -cyan $RC_CYAN")
-      cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -c$RC_CYAN")
+      cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -c $RC_CYAN")
       echo "Will run in screen: $cmd"
       screen -m -d bash -c "$cmd"
     fi
     if [[ ! -z "${RC_MAGENTA}" ]]; then
       echo "MAGENTA will be: $RC_MAGENTA"
-      cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -m$RC_MAGENTA")
+      cmd=$(echo "sleep 5 && docker exec refbox rcll-refbox-instruct -m $RC_MAGENTA")
       echo "Will run in screen: $cmd"
       screen -m -d bash -c "$cmd"
     fi
