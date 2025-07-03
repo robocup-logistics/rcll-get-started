@@ -124,9 +124,10 @@ teams:
   CYAN:
     name: GRIPS
     active: true
-    markerles: true
+    keyphrase: randomkey
+    markerles: false
   MAGENTA:
-    name: Carologistics
+    name: Pumas
     active: true
     keyphrase: randomkey
     markerles: false

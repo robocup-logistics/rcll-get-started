@@ -1,4 +1,4 @@
-export RC_MAGENTA=Carologistics
+export RC_MAGENTA=Pumas
 export RC_MQTT_BROKER_START=true
 export RC_PROTOBUF_REBROADCASTER_START=false
 export RC_SIMULATOR_START=true
