@@ -1,6 +1,8 @@
 version: '3.7'
+# name: refbox-compose
 services:
   mongodb-check:
+    container_name: mongodb-check
     image: ${MONGODB_IMAGE}:${MONGODB_TAG}
     command: ["sh", "-c", "mongosh ${RC_MONGODB_URI} --eval 'printjson(db.serverStatus())' || (sleep 1; exit -1)"]
     network_mode: "host"
@@ -13,8 +15,8 @@ services:
     depends_on:
       mongodb-check:
         condition: service_completed_successfully
-    restart: "on-failure"
-    command: llsf-refbox ${REFBOX_ARGS}
+    restart: on-failure:10
+    command: /bin/sh -c "llsf-refbox ${REFBOX_ARGS}"
     volumes:
       - ${REFBOX_CONFIG}:/etc/rcll-refbox/:z
       - ${REFBOX_LOGS_DIR}/refbox:/logs:z
@@ -24,4 +26,6 @@ services:
     image: "${REFBOX_FRONTEND_IMAGE}:${REFBOX_FRONTEND_TAG}"
     ports:
       - 8080:80
-    restart: "no"
+    volumes:
+      - /var/tmp/${USER}:/usr/local/apache2/logs/:z
+    restart: on-failure:10

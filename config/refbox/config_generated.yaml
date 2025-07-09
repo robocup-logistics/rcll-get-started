@@ -1,0 +1,13 @@
+%YAML 1.2
+%TAG ! tag:fawkesrobotics.org,cfg/
+---
+# Generated Configuration meta information document, do not modify this!
+include:
+ - challenges/default_challenges.yaml
+ - comm/default_comm.yaml
+ - game/default_game.yaml
+ - main/default_main.yaml
+ - mongodb/enable_mongodb.yaml
+ - mps/mockup_mps.yaml
+ - team/default_team.yaml
+---
