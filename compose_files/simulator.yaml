@@ -10,9 +10,3 @@ services:
     volumes:
       - ${SIMULATOR_CONFIG_FILE}:/simulator/cfg/config.yaml:z
       - ${REFBOX_LOGS_DIR}/simulator:/simulator/logs:z
-  simulator-frontend:
-    container_name: simulator-frontend
-    image: "${SIMULATOR_FRONTEND_IMAGE}:${SIMULATOR_FRONTEND_TAG}"
-    network_mode: "host"
-    depends_on:
-      - simulator

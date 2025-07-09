@@ -14,7 +14,6 @@ export MONGODB_TAG=7.0
 export MQTT_BRIDGE_TAG=master
 export MQTT_BROKER_TAG=latest
 export SIMULATOR_TAG=latest
-export SIMULATOR_FRONTEND_TAG=latest
 
 # Source URLs to obtain the container images from
 export REFBOX_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-refbox-frontend
@@ -23,7 +22,6 @@ export MONGODB_BACKEND_IMAGE=quay.io/robocup-logistics/mongodb-backend
 export MONGODB_IMAGE=docker.io/library/mongo
 export MQTT_BRIDGE_IMAGE=ghcr.io/robocup-logistics/rcll-mqtt-bridge
 export MQTT_BROKER_IMAGE=docker.io/library/eclipse-mosquitto
-export SIMULATOR_FRONTEND_IMAGE=quay.io/robocup-logistics/rcll-simulator-frontend
 export SIMULATOR_IMAGE=quay.io/robocup-logistics/rcll-simulator
 
 # logging directory
