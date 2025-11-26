@@ -1,5 +1,5 @@
 version: '3.7'
-# name: mongodb
+name: mongodb
 services:
   mongodb:
     container_name: "mongodb"

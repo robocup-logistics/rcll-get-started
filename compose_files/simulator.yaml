@@ -1,5 +1,5 @@
 version: '3.7'
-# name: simulator
+name: simulator
 services:
   simulator:
     container_name: simulator

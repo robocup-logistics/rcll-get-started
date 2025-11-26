@@ -1,5 +1,5 @@
 version: '3.7'
-# name: protobuf-rebroadcaster
+name: protobuf-rebroadcaster
 services:
   protobuf-rebroadcaster:
     container_name: protobuf-rebroadcaster

@@ -1,5 +1,5 @@
 version: "3"
-# name: mqtt-broker
+name: mqtt-broker
 services:
   broker:
     container_name: mqtt-broker
